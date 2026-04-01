@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MyPC - PC Setup At Your Doorstep</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #f4f6fb;
+    --card:     #ffffff;
+    --blue:     #1e40af;
+    --blue-lt:  #dbeafe;
+    --orange:   #ea580c;
+    --green:    #16a34a;
+    --green-lt: #dcfce7;
+    --purple:   #7c3aed;
+    --purple-lt:#ede9fe;
+    --red:      #dc2626;
+    --text:     #0f172a;
+    --muted:    #64748b;
+    --border:   #e2e8f0;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: linear-gradient(135deg, #c7d9f8 0%, #dde6f5 60%, #e8d5f5 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'DM Sans', sans-serif;
+    padding: 24px;
+  }
+
+  .poster {
+    width: 555px;
+    background: var(--bg);
+    border-radius: 26px;
+    overflow: hidden;
+    box-shadow: 0 24px 64px rgba(30,64,175,0.14), 0 4px 20px rgba(0,0,0,0.07);
+    animation: fadeUp 0.5s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(22px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 45%, #4338ca 100%);
+    padding: 28px 28px 26px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header .c1 { position:absolute; width:200px; height:200px; border-radius:50%; background:rgba(255,255,255,0.06); top:-80px; right:-50px; }
+  .header .c2 { position:absolute; width:100px; height:100px; border-radius:50%; background:rgba(255,255,255,0.04); bottom:-30px; right:100px; }
+  .header .c3 { position:absolute; width:60px; height:60px; border-radius:50%; background:rgba(234,88,12,0.22); top:20px; right:50px; }
+
+  .brand-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; position:relative; z-index:1; }
+  .brand { display:flex; align-items:center; gap:10px; }
+
+  .brand-icon { width:42px; height:42px; background:rgba(255,255,255,0.15); border:1.5px solid rgba(255,255,255,0.28); border-radius:12px; display:flex; align-items:center; justify-content:center; }
+  .brand-icon svg { width:22px; height:22px; fill:#fff; }
+
+  .brand-name { font-family:'Outfit', sans-serif; font-size:24px; font-weight:900; color:#fff; letter-spacing:1.5px; line-height:1; }
+  .brand-name span { color:#fb923c; }
+  .brand-sub { font-size:9.5px; color:rgba(255,255,255,0.5); font-weight:500; letter-spacing:1px; text-transform:uppercase; margin-top:3px; }
+
+  .blr-badge { background:rgba(255,255,255,0.13); border:1px solid rgba(255,255,255,0.28); border-radius:20px; padding:5px 14px; font-size:10.5px; font-weight:600; color:rgba(255,255,255,0.9); display:flex; align-items:center; gap:5px; }
+  .blr-badge svg { width:11px; height:11px; fill:#fb923c; }
+
+  .header-headline { font-family:'Outfit', sans-serif; font-size:36px; font-weight:800; color:#fff; line-height:1.06; margin-bottom:9px; position:relative; z-index:1; }
+  .header-headline em { color:#fb923c; font-style:normal; display:block; }
+  .header-sub { font-size:12.5px; color:rgba(255,255,255,0.68); position:relative; z-index:1; }
+
+  .accent-bar { height:4px; background:linear-gradient(90deg, #ea580c, #f97316, #fbbf24, transparent); }
+
+  /* ── BODY ── */
+  .body { padding:20px 22px 24px; }
+
+  .sec-label { font-size:9.5px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--blue); margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+  .sec-label::before { content:''; width:4px; height:14px; background:linear-gradient(to bottom, var(--orange), var(--blue)); border-radius:2px; flex-shrink:0; }
+
+  .rows { display:flex; flex-direction:column; gap:7px; margin-bottom:18px; }
+
+  .row { background:var(--card); border:1.5px solid var(--border); border-radius:13px; padding:11px 14px; display:flex; align-items:center; justify-content:space-between; gap:10px; box-shadow:0 2px 6px rgba(0,0,0,0.04); transition:box-shadow 0.2s; }
+  .row:hover { box-shadow:0 5px 18px rgba(30,64,175,0.1); }
+  .row.featured { border-color:#bfdbfe; background:linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%); box-shadow:0 4px 14px rgba(30,64,175,0.1); }
+  .row.top      { border-color:#fed7aa; background:linear-gradient(135deg, #fff7ed 0%, #fffbeb 100%); box-shadow:0 4px 14px rgba(234,88,12,0.1); }
+
+  .r-left { display:flex; flex-direction:column; gap:2px; flex:1; }
+  .r-name { font-size:13px; color:var(--text); font-weight:600; display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
+  .r-sub  { font-size:10.5px; color:var(--muted); }
+
+  .chip { font-size:8px; font-weight:800; border-radius:4px; padding:2px 7px; letter-spacing:0.5px; text-transform:uppercase; white-space:nowrap; }
+  .chip.hot  { background:#fff7ed; color:#ea580c; border:1px solid #fed7aa; }
+  .chip.best { background:#ede9fe; color:#7c3aed; border:1px solid #ddd6fe; }
+  .chip.add  { background:#f1f5f9; color:#64748b; border:1px solid #e2e8f0; }
+  .chip.new  { background:#dcfce7; color:#16a34a; border:1px solid #bbf7d0; }
+
+  .price-block { display:flex; flex-direction:column; align-items:flex-end; flex-shrink:0; }
+  .orig-price  { font-family:'Outfit', sans-serif; font-size:11px; font-weight:500; color:#94a3b8; text-decoration:line-through; text-decoration-color:var(--red); text-decoration-thickness:1.5px; line-height:1; margin-bottom:1px; }
+  .disc-price  { font-family:'Outfit', sans-serif; font-size:20px; font-weight:800; color:var(--blue); line-height:1; }
+  .disc-price.orange { color:var(--orange); }
+  .disc-price.purple { color:var(--purple); }
+  .disc-price.sm     { font-size:17px; color:#475569; }
+  .save-tag { font-size:8.5px; font-weight:700; color:var(--green); background:var(--green-lt); border-radius:3px; padding:1px 5px; margin-top:2px; }
+
+  .os-block { background:var(--card); border:1.5px solid var(--border); border-radius:13px; overflow:hidden; margin-bottom:7px; box-shadow:0 2px 6px rgba(0,0,0,0.04); }
+  .os-head  { background:var(--purple-lt); padding:9px 14px; font-size:12.5px; font-weight:700; color:var(--purple); border-bottom:1.5px solid #ddd6fe; }
+  .os-row   { display:flex; justify-content:space-between; align-items:center; padding:9px 14px; border-bottom:1px solid #f1f5f9; }
+  .os-row:last-child { border-bottom:none; }
+  .os-type  { font-size:12px; color:var(--muted); font-weight:500; }
+
+  /* ── STUDENT ── */
+  .student-box { background:linear-gradient(135deg, #f0fdf4, #ecfdf5); border:2px solid #86efac; border-radius:16px; padding:15px 16px 13px; margin-bottom:18px; }
+  .stu-head-row { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+  .stu-icon { width:38px; height:38px; background:linear-gradient(135deg, #15803d, #16a34a); border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 4px 10px rgba(22,163,74,0.3); }
+  .stu-icon svg { width:20px; height:20px; fill:#fff; }
+  .stu-title { font-family:'Outfit', sans-serif; font-size:16px; font-weight:800; color:#14532d; }
+  .stu-sub   { font-size:9.5px; color:#16a34a; font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-top:2px; }
+  .stu-deal  { background:#fff; border:1.5px solid #bbf7d0; border-radius:12px; padding:13px 15px; display:flex; align-items:center; justify-content:space-between; gap:14px; box-shadow:0 3px 10px rgba(22,163,74,0.09); }
+  .stu-text  { font-size:12.5px; color:#374151; font-weight:500; line-height:1.55; }
+  .stu-text strong { color:#14532d; font-size:14px; font-weight:700; display:block; }
+  .stu-amount { background:linear-gradient(135deg, #15803d, #16a34a); border-radius:12px; padding:11px 17px; text-align:center; flex-shrink:0; box-shadow:0 6px 16px rgba(22,163,74,0.35); }
+  .stu-num   { font-family:'Outfit', sans-serif; font-size:30px; font-weight:800; color:#fff; line-height:1; }
+  .stu-lbl   { font-size:9px; color:rgba(255,255,255,0.75); font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-top:2px; }
+  .stu-note  { margin-top:9px; font-size:10.5px; color:var(--green); font-weight:500; display:flex; align-items:center; gap:5px; }
+  .stu-note svg { width:13px; height:13px; fill:var(--green); flex-shrink:0; }
+
+  /* ── VISIT ── */
+  .visit-grid { display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-bottom:18px; }
+  .v-card { background:var(--card); border:1.5px solid var(--border); border-radius:13px; padding:13px; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,0.04); }
+  .v-card.far { border-color:#ddd6fe; background:linear-gradient(135deg, #faf5ff, #eff6ff); }
+  .v-km  { font-size:9.5px; color:var(--muted); font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:4px; }
+  .v-fee { font-family:'Outfit', sans-serif; font-size:26px; font-weight:800; color:var(--text); }
+  .v-lbl { font-size:9.5px; color:var(--muted); margin-top:2px; }
+
+  /* ── AVAILABILITY ── */
+  .avail-box { background:var(--card); border:1.5px solid var(--border); border-radius:15px; overflow:hidden; margin-bottom:17px; box-shadow:0 2px 6px rgba(0,0,0,0.04); }
+  .avail-row { display:flex; justify-content:space-between; align-items:center; padding:10px 15px; border-bottom:1px solid #f1f5f9; }
+  .avail-row:last-child { border-bottom:none; }
+  .avail-row:nth-child(odd) { background:#fafbff; }
+  .avail-day  { font-size:12px; color:var(--text); font-weight:600; display:flex; align-items:center; gap:8px; }
+  .avail-dot  { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+  .avail-dot.half { background:#f59e0b; box-shadow:0 0 5px #f59e0b70; }
+  .avail-dot.full { background:#22c55e; box-shadow:0 0 5px #22c55e70; }
+  .avail-time { font-family:'Outfit', sans-serif; font-size:13px; font-weight:700; color:var(--blue); background:var(--blue-lt); border-radius:6px; padding:3px 10px; }
+  .avail-time.full-day { color:var(--green); background:var(--green-lt); }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: linear-gradient(135deg, #1e3a8a, #1e40af, #1d4ed8);
+    border-radius: 16px;
+    padding: 20px 20px 18px;
+    margin-bottom: 13px;
+    box-shadow: 0 8px 24px rgba(30,64,175,0.3);
+  }
+  .f-label  { font-size:9.5px; font-weight:700; color:rgba(255,255,255,0.5); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:5px; }
+  .f-number { font-family:'Outfit', sans-serif; font-size:30px; font-weight:700; color:#fff; letter-spacing:2px; line-height:1; margin-bottom:12px; }
+  .wa-note  { font-size:11.5px; color:rgba(255,255,255,0.65); line-height:1.5; margin-bottom:14px; }
+
+  .wa-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #15803d, #22c55e);
+    border-radius: 12px;
+    padding: 14px 20px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 4px 18px rgba(34,197,94,0.5);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .wa-btn:hover  { transform:translateY(-2px); box-shadow:0 8px 26px rgba(34,197,94,0.6); }
+  .wa-btn:active { transform:translateY(0); }
+  .wa-btn svg { width:24px; height:24px; flex-shrink:0; }
+
+  .bottom-note { display:flex; align-items:center; justify-content:center; gap:7px; font-size:10.5px; color:var(--muted); font-weight:500; }
+  .pulse-dot { width:7px; height:7px; border-radius:50%; background:#22c55e; animation:pulse 1.8s infinite; }
+  @keyframes pulse {
+    0%,100% { box-shadow:0 0 0 2px #22c55e30; }
+    50%      { box-shadow:0 0 0 6px #22c55e10; }
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="c1"></div><div class="c2"></div><div class="c3"></div>
+    <div class="brand-row">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 2H3a2 2 0 00-2 2v12a2 2 0 002 2h7v2H8v2h8v-2h-2v-2h7a2 2 0 002-2V4a2 2 0 00-2-2zm0 14H3V4h18v12z"/></svg>
+        </div>
+        <div>
+          <div class="brand-name">My<span>PC</span></div>
+          <div class="brand-sub">Home Tech Service</div>
+        </div>
+      </div>
+      <div class="blr-badge">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        Bangalore
+      </div>
+    </div>
+    <div class="header-headline">PC Setup,<em>At Your Doorstep</em></div>
+    <div class="header-sub">We'll set it up exactly how you need it &mdash; at home.</div>
+  </div>
+  <div class="accent-bar"></div>
+
+  <div class="body">
+
+    <!-- SETUP SERVICES -->
+    <div class="sec-label">Setup Services</div>
+    <div class="rows">
+
+      <div class="row top">
+        <div class="r-left">
+          <div class="r-name">Basic Setup <span class="chip hot">Popular</span></div>
+          <div class="r-sub">Cable wiring &middot; Table setup &middot; WiFi &middot; Drivers</div>
+        </div>
+        <div class="price-block">
+          <div class="orig-price">&#8377;499</div>
+          <div class="disc-price orange">&#8377;399</div>
+          <div class="save-tag">Save &#8377;100</div>
+        </div>
+      </div>
+
+      <div class="row featured">
+        <div class="r-left">
+          <div class="r-name">Full Setup <span class="chip best">Best Value</span></div>
+          <div class="r-sub">Basic + OS + Apps + Accounts + Drivers</div>
+        </div>
+        <div class="price-block">
+          <div class="orig-price">&#8377;1,099</div>
+          <div class="disc-price">&#8377;999</div>
+          <div class="save-tag">Save &#8377;100</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="r-left">
+          <div class="r-name">Data Transfer <span class="chip add">Add-on</span></div>
+          <div class="r-sub">Old PC &#8594; New PC</div>
+        </div>
+        <div class="price-block">
+          <div class="orig-price">&#8377;299</div>
+          <div class="disc-price sm">+&#8377;199</div>
+          <div class="save-tag">Save &#8377;100</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="r-left">
+          <div class="r-name">Printer / Peripheral <span class="chip add">Add-on</span></div>
+        </div>
+        <div class="price-block">
+          <div class="orig-price">&#8377;249</div>
+          <div class="disc-price sm">+&#8377;149</div>
+          <div class="save-tag">Save &#8377;100</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- REPAIR & SUPPORT -->
+    <div class="sec-label">Repair &amp; Support</div>
+    <div class="rows">
+
+      <div class="os-block">
+        <div class="os-head">OS Reinstall</div>
+        <div class="os-row">
+          <div class="os-type">Cracked Version</div>
+          <div class="price-block">
+            <div class="orig-price">&#8377;599</div>
+            <div class="disc-price purple">&#8377;499</div>
+            <div class="save-tag">Save &#8377;100</div>
+          </div>
+        </div>
+        <div class="os-row">
+          <div class="os-type">Original / Licensed</div>
+          <div class="price-block">
+            <div class="orig-price">&#8377;1,699</div>
+            <div class="disc-price purple">&#8377;1,599</div>
+            <div class="save-tag">Save &#8377;100</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="r-left">
+          <div class="r-name">Slow PC Fix / Optimization</div>
+        </div>
+        <div class="price-block">
+          <div class="orig-price">&#8377;399</div>
+          <div class="disc-price purple">&#8377;299</div>
+          <div class="save-tag">Save &#8377;100</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="r-left">
+          <div class="r-name">PC Cleanup <span class="chip new">New</span></div>
+          <div class="r-sub">Junk removal &middot; Temp files &middot; Speed boost</div>
+        </div>
+        <div class="price-block">
+          <div class="orig-price">&#8377;349</div>
+          <div class="disc-price purple">&#8377;249</div>
+          <div class="save-tag">Save &#8377;100</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- STUDENT SPECIAL -->
+    <div class="student-box">
+      <div class="stu-head-row">
+        <div class="stu-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+        </div>
+        <div>
+          <div class="stu-title">Student Special</div>
+          <div class="stu-sub">Show College ID &middot; Save Instantly</div>
+        </div>
+      </div>
+      <div class="stu-deal">
+        <div class="stu-text">
+          <strong>&#8377;200 Flat OFF</strong>
+          on your total bill when it's above &#8377;500 &mdash; just show your college or school ID!
+        </div>
+        <div class="stu-amount">
+          <div class="stu-num">&#8377;200</div>
+          <div class="stu-lbl">flat off</div>
+        </div>
+      </div>
+      <div class="stu-note">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+        Any college / school student in Bangalore &middot; Min bill &#8377;500
+      </div>
+    </div>
+
+    <!-- VISIT CHARGES -->
+    <div class="sec-label">Visit Charges</div>
+    <div class="visit-grid">
+      <div class="v-card">
+        <div class="v-km">Within 10 km</div>
+        <div class="v-fee">&#8377;49</div>
+        <div class="v-lbl">visit fee</div>
+      </div>
+      <div class="v-card far">
+        <div class="v-km">Beyond 10 km</div>
+        <div class="v-fee">&#8377;99</div>
+        <div class="v-lbl">visit fee</div>
+      </div>
+    </div>
+
+    <!-- AVAILABILITY -->
+    <div class="sec-label">Availability</div>
+    <div class="avail-box">
+      <div class="avail-row">
+        <div class="avail-day"><div class="avail-dot half"></div>Weekdays (Mon &ndash; Fri)</div>
+        <div class="avail-time">3:00 PM &ndash; 9:00 PM</div>
+      </div>
+      <div class="avail-row">
+        <div class="avail-day"><div class="avail-dot half"></div>1st &amp; 3rd Saturday</div>
+        <div class="avail-time">3:00 PM &ndash; 9:00 PM</div>
+      </div>
+      <div class="avail-row">
+        <div class="avail-day"><div class="avail-dot full"></div>2nd &amp; 4th Saturday</div>
+        <div class="avail-time full-day">9:00 AM &ndash; 9:00 PM</div>
+      </div>
+      <div class="avail-row">
+        <div class="avail-day"><div class="avail-dot full"></div>All Sundays</div>
+        <div class="avail-time full-day">9:00 AM &ndash; 9:00 PM</div>
+      </div>
+    </div>
+
+    <!-- FOOTER - WhatsApp Only -->
+    <div class="footer">
+      <div class="f-label">WhatsApp Us</div>
+      <div class="f-number">+91 82969 28645</div>
+      <div class="wa-note">Message us directly on WhatsApp &mdash; our team will connect with you soon!</div>
+      <a href="https://wa.me/918296928645?text=Hi%20MyPC!%20I%27d%20like%20to%20book%20a%20PC%20setup%20service." target="_blank" rel="noopener noreferrer" class="wa-btn">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#fff" d="M16 2C8.27 2 2 8.27 2 16c0 2.44.66 4.73 1.8 6.72L2 30l7.47-1.77A13.93 13.93 0 0016 30c7.73 0 14-6.27 14-14S23.73 2 16 2zm0 25.5a11.44 11.44 0 01-5.84-1.6l-.42-.25-4.34 1.03 1.05-4.22-.27-.44A11.45 11.45 0 014.5 16C4.5 9.6 9.6 4.5 16 4.5S27.5 9.6 27.5 16 22.4 27.5 16 27.5zm6.27-8.57c-.34-.17-2.02-.99-2.33-1.1-.31-.12-.54-.17-.77.17-.23.34-.88 1.1-1.08 1.33-.2.23-.4.26-.74.09-.34-.17-1.44-.53-2.74-1.69-1.01-.9-1.7-2.01-1.89-2.35-.2-.34-.02-.52.15-.69.15-.15.34-.4.51-.59.17-.2.23-.34.34-.57.11-.23.06-.43-.03-.6-.09-.17-.77-1.85-1.05-2.53-.28-.67-.56-.58-.77-.59l-.65-.01c-.23 0-.59.09-.9.43-.31.34-1.17 1.14-1.17 2.79s1.2 3.23 1.36 3.46c.17.23 2.36 3.6 5.72 5.05.8.34 1.42.55 1.9.7.8.25 1.53.22 2.1.13.64-.1 1.97-.8 2.25-1.58.28-.77.28-1.43.2-1.57-.09-.14-.31-.23-.65-.4z"/>
+        </svg>
+        WhatsApp Us Now
+      </a>
+    </div>
+
+    <div class="bottom-note">
+      <div class="pulse-dot"></div>
+      MyPC &middot; Trusted Home Tech Service &middot; Bangalore
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
