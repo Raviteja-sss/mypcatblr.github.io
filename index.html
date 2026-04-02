@@ -4,1080 +4,502 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MyPC — PC Setup At Your Doorstep · Bangalore</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-/* ══════════════════════════════════════════════
-   TOKENS
-══════════════════════════════════════════════ */
 :root {
-  --bg:      #f0f4fb;
-  --surface:  #0f1119;
-  --card:     #161a26;
-  --card2:    #1c2134;
-  --border:   rgba(255,255,255,0.09);
-  --border2:  rgba(255,255,255,0.16);
+  --blue:    #2563ff;
+  --orange:  #ff5400;
+  --green:   #00b96b;
+  --purple:  #8b2fff;
+  --pink:    #ff1f7a;
+  --teal:    #00b8d9;
+  --gold:    #f59e00;
+  --red:     #ef4444;
 
-  --blue:     #4d8fff;
-  --blue-lt:  #1e3a8a;
-  --orange:   #ff6b1a;
-  --green:    #00e676;
-  --green-dk: #00c853;
-  --purple:   #bf5fff;
-  --pink:     #ff3d9a;
-  --teal:     #00e5ff;
-  --gold:     #ffca28;
+  --bg:      #f0f3ff;
+  --white:   #ffffff;
+  --ink:     #0d0f1a;
+  --txt:     #374151;
+  --muted:   #6b7280;
+  --border:  #e5e7eb;
 
-  --white:    #ffffff;
-  --txt:      #e2e8f4;
-  --txt2:     #8893a8;
-  --txt3:     #4e5768;
-
-  --red:      #f43f5e;
+  --blue-tint:   #eff4ff;
+  --orange-tint: #fff4ee;
+  --green-tint:  #edfff5;
+  --purple-tint: #f5eeff;
+  --pink-tint:   #fff0f6;
+  --teal-tint:   #edfbff;
+  --gold-tint:   #fffbeb;
 }
 
-/* ══════════════════════════════════════════════
-   RESET & BASE
-══════════════════════════════════════════════ */
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
 body {
-  background: #060709;
-  font-family: 'Nunito', sans-serif;
+  background: linear-gradient(135deg, #dde8ff 0%, #ede0ff 50%, #ffd6ea 100%);
+  font-family: 'DM Sans', sans-serif;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   padding: 32px 12px 60px;
 }
 
-/* ══════════════════════════════════════════════
-   POSTER SHELL
-══════════════════════════════════════════════ */
 .poster {
-  width: 600px;
+  width: 610px;
   background: var(--bg);
   border-radius: 28px;
   overflow: hidden;
   box-shadow:
-    0 0 0 1px rgba(255,255,255,0.06),
-    0 40px 120px rgba(0,0,0,0.8),
-    0 0 80px rgba(77,143,255,0.12);
-  animation: rise .55s cubic-bezier(.22,.68,0,1.2) both;
+    0 0 0 1.5px rgba(37,99,255,0.15),
+    0 32px 100px rgba(37,99,255,0.18),
+    0 8px 32px rgba(0,0,0,0.1);
+  animation: rise .5s cubic-bezier(.22,.68,0,1.2) both;
 }
 @keyframes rise {
-  from { opacity:0; transform:translateY(30px) scale(.98); }
+  from { opacity:0; transform:translateY(28px) scale(.97); }
   to   { opacity:1; transform:none; }
 }
 
-/* ══════════════════════════════════════════════
-   GRAIN OVERLAY
-══════════════════════════════════════════════ */
-.poster::after {
-  content:'';
-  position:fixed; inset:0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='.04'/%3E%3C/svg%3E");
-  pointer-events:none; z-index:9999; opacity:.6;
-}
-
-/* ══════════════════════════════════════════════
-   HERO
-══════════════════════════════════════════════ */
+/* ══ HERO ══ */
 .hero {
+  background: linear-gradient(135deg, #1a0a5e 0%, #2563ff 45%, #7c3aed 100%);
+  padding: 32px 32px 0;
   position: relative;
-  padding: 34px 34px 0;
-  background: linear-gradient(160deg, #0a0d1a 0%, #0d1225 40%, #080d1e 100%);
   overflow: hidden;
 }
+.blob { position:absolute; border-radius:50%; filter:blur(60px); pointer-events:none; animation:float 6s ease-in-out infinite; }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+.b1 { width:320px; height:320px; background:rgba(139,47,255,0.45); top:-120px; right:-80px; }
+.b2 { width:200px; height:200px; background:rgba(255,84,0,0.35);   bottom:-60px; left:-40px; animation-delay:2s; }
+.b3 { width:150px; height:150px; background:rgba(0,184,217,0.3);   bottom:20px; right:120px; animation-delay:4s; }
+.hero-dots { position:absolute; inset:0; pointer-events:none; background-image:radial-gradient(circle,rgba(255,255,255,0.12) 1.5px,transparent 1.5px); background-size:24px 24px; }
+.hero-inner { position:relative; z-index:2; }
 
-/* mesh background */
-.hero::before {
-  content:'';
-  position:absolute; inset:0;
-  background:
-    radial-gradient(ellipse 500px 300px at 80% -10%, rgba(77,143,255,0.45) 0%, transparent 70%),
-    radial-gradient(ellipse 300px 200px at -10% 70%, rgba(255,107,26,0.30) 0%, transparent 60%),
-    radial-gradient(ellipse 200px 200px at 90% 90%, rgba(191,95,255,0.28) 0%, transparent 60%);
-  pointer-events:none;
-}
-
-/* dot grid */
-.hero::after {
-  content:'';
-  position:absolute; inset:0;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.045) 1px, transparent 1px);
-  background-size: 22px 22px;
-  pointer-events:none;
-}
-
-.hero-content { position:relative; z-index:2; }
-
-/* ── top bar ── */
-.top-bar {
-  display:flex; justify-content:space-between; align-items:center;
-  margin-bottom:30px;
-}
-.brand { display:flex; align-items:center; gap:13px; }
-.brand-mark {
-  width:50px; height:50px;
-  background: linear-gradient(135deg, #1a3fd4 0%, #4d8fff 100%);
-  border-radius:15px;
+.top-bar { display:flex; align-items:center; justify-content:space-between; margin-bottom:26px; }
+.brand { display:flex; align-items:center; gap:12px; }
+.brand-icon {
+  width:52px; height:52px;
+  background: linear-gradient(135deg,#ff5400,#ff9500);
+  border-radius:16px;
   display:flex; align-items:center; justify-content:center;
-  box-shadow: 0 4px 20px rgba(77,143,255,0.55), inset 0 1px 0 rgba(255,255,255,0.15);
-  position:relative; overflow:hidden;
+  box-shadow:0 6px 20px rgba(255,84,0,0.55), inset 0 1px 0 rgba(255,255,255,0.25);
 }
-.brand-mark::before {
-  content:'';
-  position:absolute; top:0; left:0; right:0; height:50%;
-  background:rgba(255,255,255,0.07); border-radius:15px 15px 0 0;
-}
-.brand-mark svg { width:26px; height:26px; fill:#fff; position:relative; z-index:1; }
-.brand-text { line-height:1; }
-.brand-name {
-  font-family:'Outfit', sans-serif;
-  font-size:28px; font-weight:800; color:var(--white); letter-spacing:.5px; line-height:1;
-}
-.brand-name b { color:var(--orange); }
-.brand-sub {
-  font-family:'Outfit', sans-serif;
-  font-size:8.5px; color:var(--txt3); letter-spacing:0.5px;
-  text-transform:uppercase; margin-top:4px; display:block;
-}
+.brand-icon svg { width:28px; height:28px; fill:#fff; }
+.brand-name { font-family:'Outfit',sans-serif; font-size:30px; font-weight:900; color:#fff; letter-spacing:-0.5px; line-height:1; }
+.brand-name span { color:#ffb347; }
+.brand-sub { font-size:9px; font-weight:600; color:rgba(255,255,255,0.5); letter-spacing:1px; text-transform:uppercase; margin-top:3px; }
 
-.city-pill {
-  display:flex; align-items:center; gap:6px;
-  background:rgba(255,255,255,0.05);
-  border:1px solid var(--border2);
-  border-radius:100px; padding:7px 14px;
-  backdrop-filter:blur(8px);
-}
-.city-pill svg { width:10px; height:10px; fill:var(--orange); }
-.city-pill span { font-family:'Outfit', sans-serif; font-size:10px; color:rgba(255,255,255,0.7); letter-spacing:.5px; }
+.city-tag { background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.25); border-radius:100px; padding:7px 16px; display:flex; align-items:center; gap:6px; backdrop-filter:blur(10px); }
+.city-tag svg { width:11px; height:11px; fill:#ffb347; }
+.city-tag span { font-size:11px; font-weight:700; color:rgba(255,255,255,0.9); }
 
-/* ── headline ── */
-.headline {
-  font-family:'Outfit', sans-serif;
-  font-size:50px; font-weight:800;
-  color:var(--white); line-height:1.0; letter-spacing:-1.5px;
-  margin-bottom:10px;
-}
-.headline .hl-accent { color:var(--orange); }
-.headline .hl-line2 { display:block; font-size:42px; font-weight:400; color:rgba(255,255,255,0.5); letter-spacing:-1px; }
+.hl { font-family:'Outfit',sans-serif; font-size:52px; font-weight:900; color:#fff; line-height:1.0; letter-spacing:-1.5px; margin-bottom:10px; }
+.hl-accent { color:#ffb347; font-style:normal; display:block; }
+.hl-thin   { display:block; font-size:36px; font-weight:400; color:rgba(255,255,255,0.55); letter-spacing:-0.5px; }
 
-.subline {
-  font-size:13px; color:var(--txt2); line-height:1.65;
-  max-width:400px; margin-bottom:24px;
-}
+.sub { font-size:13.5px; color:rgba(255,255,255,0.6); line-height:1.6; max-width:420px; margin-bottom:22px; }
 
-/* device tags */
-.dev-tags { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:28px; }
-.dev-tag {
-  display:flex; align-items:center; gap:7px;
-  background:rgba(255,255,255,0.06);
-  border:1px solid var(--border);
-  border-radius:8px; padding:6px 13px;
-  font-size:10.5px; font-weight:700; color:rgba(255,255,255,0.8);
-}
-.dev-tag svg { width:12px; height:12px; fill:var(--orange); }
+.dev-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:28px; }
+.dev-pill { display:flex; align-items:center; gap:7px; background:rgba(255,255,255,0.13); border:1px solid rgba(255,255,255,0.2); border-radius:100px; padding:6px 14px; font-size:11px; font-weight:700; color:#fff; backdrop-filter:blur(6px); }
+.dev-pill svg { width:13px; height:13px; fill:#ffb347; }
 
-/* stats strip */
-.stats {
-  display:flex;
-  border-top:1px solid var(--border);
-  margin-top:4px;
-}
-.stat {
-  flex:1; padding:16px 14px; text-align:center;
-  border-right:1px solid var(--border);
-}
+.stats { border-top:1px solid rgba(255,255,255,0.12); display:grid; grid-template-columns:repeat(4,1fr); }
+.stat { padding:15px 10px; text-align:center; border-right:1px solid rgba(255,255,255,0.1); }
 .stat:last-child { border-right:none; }
-.stat-val {
-  font-family:'Outfit', sans-serif;
-  font-size:19px; font-weight:800; color:var(--white); line-height:1; margin-bottom:4px;
-}
-.stat-lbl {
-  font-family:'Outfit', sans-serif;
-  font-size:9px; color:var(--txt3); letter-spacing:0.5px; text-transform:uppercase;
-}
+.stat-n { font-family:'Outfit',sans-serif; font-size:18px; font-weight:800; color:#fff; line-height:1; margin-bottom:4px; }
+.stat-l { font-size:9px; font-weight:600; color:rgba(255,255,255,0.45); text-transform:uppercase; letter-spacing:0.3px; }
 
-/* rainbow stripe */
-.rainbow {
-  height:4px;
-  background:linear-gradient(90deg,
-    var(--blue) 0%, var(--purple) 22%, var(--pink) 40%,
-    var(--orange) 58%, var(--gold) 74%, var(--green) 88%, transparent 100%);
-}
+.rainbow { height:5px; background:linear-gradient(90deg,#2563ff 0%,#8b2fff 20%,#ff1f7a 38%,#ff5400 55%,#f59e00 72%,#00b96b 88%,#00b8d9 100%); }
 
-/* ══════════════════════════════════════════════
-   BODY
-══════════════════════════════════════════════ */
-.body { padding:28px 28px 32px; }
+/* ══ BODY ══ */
+.body { padding:28px 26px 32px; background:var(--bg); }
 
-/* section label */
-.sec-label {
-  display:flex; align-items:center; gap:10px;
-  margin-bottom:14px;
-}
-.sec-tag {
-  font-family:'Outfit', sans-serif;
-  font-size:9px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase;
-  color:var(--blue);
-  background:rgba(77,143,255,0.14);
-  border:1px solid rgba(77,143,255,0.25);
-  border-radius:5px; padding:3px 9px;
-}
-.sec-name {
-  font-family:'Outfit', sans-serif;
-  font-size:12.5px; font-weight:700; color:var(--txt); letter-spacing:0.3px; text-transform:uppercase;
-}
-.sec-rule { flex:1; height:1px; background:linear-gradient(90deg,var(--border2),transparent); }
+.sec-head { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+.sec-num { font-family:'Outfit',sans-serif; font-size:10px; font-weight:800; background:var(--blue); color:#fff; border-radius:6px; padding:2px 9px; }
+.sec-name { font-family:'Outfit',sans-serif; font-size:13px; font-weight:800; color:var(--ink); text-transform:uppercase; letter-spacing:0.8px; }
+.sec-line { flex:1; height:1.5px; background:linear-gradient(90deg,var(--border),transparent); }
 
-/* ── category banner ── */
-.cat-banner {
-  border-radius:14px; padding:18px 20px;
-  margin-bottom:12px; position:relative; overflow:hidden;
-}
-.cat-banner::before {
-  content:'';
-  position:absolute; inset:0;
-  background-image: radial-gradient(circle,rgba(255,255,255,0.05) 1px,transparent 1px);
-  background-size:16px 16px; pointer-events:none;
-}
-.cat-banner.cb-setup  { background:linear-gradient(135deg,#0a1340,#1a2d6e,#1e3a8a); border:1px solid rgba(59,110,248,0.25); }
-.cat-banner.cb-repair { background:linear-gradient(135deg,#1a0640,#3d0f82,#5b21b6); border:1px solid rgba(191,95,255,0.30); }
-.cb-glow1 { position:absolute; width:200px; height:200px; border-radius:50%; filter:blur(70px); top:-80px; right:-50px; pointer-events:none; }
-.cb-setup  .cb-glow1 { background:rgba(77,143,255,0.35); }
-.cb-repair .cb-glow1 { background:rgba(191,95,255,0.35); }
-.cb-inner { position:relative; z-index:1; display:flex; align-items:center; gap:14px; }
-.cb-icon {
-  width:52px; height:52px; border-radius:14px;
-  background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.18);
-  display:flex; align-items:center; justify-content:center; flex-shrink:0;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
-}
-.cb-icon svg { width:26px; height:26px; fill:#fff; }
-.cb-title { font-family:'Outfit', sans-serif; font-size:15px; font-weight:800; color:#fff; margin-bottom:5px; }
-.cb-sub { font-size:11px; color:rgba(255,255,255,0.55); line-height:1.5; margin-bottom:8px; }
+/* category banners */
+.cat-banner { border-radius:16px; padding:18px 20px; margin-bottom:14px; position:relative; overflow:hidden; border:1.5px solid rgba(255,255,255,0.3); }
+.cb-blue   { background:linear-gradient(135deg,#1a3bcc,#2563ff,#3b82f6); }
+.cb-purple { background:linear-gradient(135deg,#5b21b6,#7c3aed,#8b2fff); }
+.cb-shine  { position:absolute; inset:0; background:radial-gradient(ellipse 200px 150px at 90% -20%,rgba(255,255,255,0.18) 0%,transparent 70%); pointer-events:none; }
+.cb-dots   { position:absolute; inset:0; pointer-events:none; background-image:radial-gradient(circle,rgba(255,255,255,0.1) 1px,transparent 1px); background-size:16px 16px; }
+.cb-inner  { position:relative; z-index:1; display:flex; align-items:center; gap:14px; }
+.cb-icon   { width:54px; height:54px; border-radius:14px; background:rgba(255,255,255,0.18); border:1.5px solid rgba(255,255,255,0.3); display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:inset 0 1px 0 rgba(255,255,255,0.2),0 4px 12px rgba(0,0,0,0.2); }
+.cb-icon svg { width:28px; height:28px; fill:#fff; }
+.cb-title { font-family:'Outfit',sans-serif; font-size:15px; font-weight:800; color:#fff; margin-bottom:4px; }
+.cb-sub   { font-size:11px; color:rgba(255,255,255,0.65); line-height:1.5; margin-bottom:8px; }
 .cb-pills { display:flex; flex-wrap:wrap; gap:5px; }
-.cb-pill {
-  background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.16);
-  border-radius:100px; padding:3px 10px;
-  font-size:9px; font-weight:700; color:rgba(255,255,255,0.85); letter-spacing:.3px;
-}
+.cb-pill  { background:rgba(255,255,255,0.18); border:1px solid rgba(255,255,255,0.25); border-radius:100px; padding:3px 11px; font-size:9.5px; font-weight:700; color:#fff; }
 
-/* ── service rows ── */
-.rows { display:flex; flex-direction:column; gap:8px; margin-bottom:6px; }
+/* service rows */
+.rows { display:flex; flex-direction:column; gap:9px; margin-bottom:22px; }
 
 .row {
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:14px 16px;
-  display:flex; align-items:flex-start; justify-content:space-between; gap:14px;
+  background:var(--white); border:1.5px solid var(--border); border-radius:16px;
+  padding:15px 16px; display:flex; align-items:flex-start; justify-content:space-between; gap:14px;
   position:relative; overflow:hidden;
-  transition:border-color .2s, transform .18s, box-shadow .18s;
+  transition:transform .18s, box-shadow .18s, border-color .18s;
+  animation:rowIn .4s ease both;
 }
-.row::before {
-  content:'';
-  position:absolute; left:0; top:0; bottom:0; width:3px;
-  border-radius:0; transition:opacity .2s;
-}
-.row:hover { transform:translateY(-1.5px); box-shadow:0 8px 30px rgba(0,0,0,0.5); }
+.rows .row:nth-child(1){animation-delay:.05s} .rows .row:nth-child(2){animation-delay:.10s}
+.rows .row:nth-child(3){animation-delay:.15s} .rows .row:nth-child(4){animation-delay:.20s}
+.rows .row:nth-child(5){animation-delay:.25s}
+@keyframes rowIn { from{opacity:0;transform:translateX(-10px)} to{opacity:1;transform:none} }
+.row::before { content:''; position:absolute; left:0; top:0; bottom:0; width:4px; }
+.row:hover { transform:translateY(-2px); }
 
-.row.r-orange { border-color:rgba(255,107,26,0.22); } .row.r-orange::before { background:var(--orange); }
-.row.r-blue   { border-color:rgba(77,143,255,0.25);  } .row.r-blue::before   { background:var(--blue); }
-.row.r-green  { border-color:rgba(0,230,118,0.22);  } .row.r-green::before  { background:var(--green); }
-.row.r-slate  { border-color:rgba(255,255,255,0.1); } .row.r-slate::before  { background:var(--txt3); }
-.row.r-purple { border-color:rgba(191,95,255,0.25);  } .row.r-purple::before { background:var(--purple); }
-.row.r-pink   { border-color:rgba(255,61,154,0.22);  } .row.r-pink::before   { background:var(--pink); }
-.row.r-teal   { border-color:rgba(0,229,255,0.22);   } .row.r-teal::before   { background:var(--teal); }
+.r-or { border-color:#ffd0b5; } .r-or::before { background:var(--orange); }
+.r-bl { border-color:#bfd1ff; } .r-bl::before { background:var(--blue); }
+.r-gr { border-color:#a7f3ce; } .r-gr::before { background:var(--green); }
+.r-sl { border-color:#e5e7eb; } .r-sl::before { background:#9ca3af; }
+.r-pk { border-color:#ffbbd9; } .r-pk::before { background:var(--pink); }
+.r-pu { border-color:#d8b4fe; } .r-pu::before { background:var(--purple); }
+.r-te { border-color:#99f0ff; } .r-te::before { background:var(--teal); }
 
-.row:hover.r-orange { border-color:rgba(255,107,26,0.5); }
-.row:hover.r-blue   { border-color:rgba(59,110,248,0.4); }
-.row:hover.r-green  { border-color:rgba(24,201,100,0.4); }
-.row:hover.r-purple { border-color:rgba(191,95,255,0.45); }
-.row:hover.r-pink   { border-color:rgba(255,61,154,0.45); }
-.row:hover.r-teal   { border-color:rgba(0,229,255,0.45);  }
+.r-or:hover { border-color:#ff8c5a; box-shadow:0 10px 36px rgba(255,84,0,0.12); }
+.r-bl:hover { border-color:#6090ff; box-shadow:0 10px 36px rgba(37,99,255,0.12); }
+.r-gr:hover { border-color:#34d399; box-shadow:0 10px 36px rgba(0,185,107,0.12); }
+.r-pk:hover { border-color:#ff60ad; box-shadow:0 10px 36px rgba(255,31,122,0.12); }
+.r-pu:hover { border-color:#a855f7; box-shadow:0 10px 36px rgba(139,47,255,0.12); }
+.r-te:hover { border-color:#22d3ee; box-shadow:0 10px 36px rgba(0,184,217,0.12); }
 
-.r-left { display:flex; align-items:flex-start; gap:12px; flex:1; min-width:0; }
-
-.r-icon {
-  width:42px; height:42px; border-radius:12px;
-  display:flex; align-items:center; justify-content:center; flex-shrink:0;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
-}
-.r-icon svg { width:20px; height:20px; }
-.ri-orange { background:rgba(255,107,26,0.20); } .ri-orange svg { fill:var(--orange); }
-.ri-blue   { background:rgba(77,143,255,0.18); } .ri-blue   svg { fill:var(--blue); }
-.ri-green  { background:rgba(0,230,118,0.14); } .ri-green  svg { fill:var(--green); }
-.ri-slate  { background:rgba(255,255,255,0.06);} .ri-slate  svg { fill:var(--txt2); }
-.ri-purple { background:rgba(191,95,255,0.18); } .ri-purple svg { fill:var(--purple); }
-.ri-pink   { background:rgba(255,61,154,0.18); } .ri-pink   svg { fill:var(--pink); }
-.ri-teal   { background:rgba(0,229,255,0.14);  } .ri-teal   svg { fill:var(--teal); }
-.ri-rgb    { background:linear-gradient(135deg,rgba(155,89,247,.4),rgba(232,62,140,.4)); } .ri-rgb svg { fill:#fff; }
+.r-left { display:flex; gap:12px; align-items:flex-start; flex:1; min-width:0; }
+.r-icon { width:44px; height:44px; border-radius:13px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.r-icon svg { width:22px; height:22px; }
+.ri-or { background:var(--orange-tint); } .ri-or svg { fill:var(--orange); }
+.ri-bl { background:var(--blue-tint);   } .ri-bl svg { fill:var(--blue); }
+.ri-gr { background:var(--green-tint);  } .ri-gr svg { fill:var(--green); }
+.ri-sl { background:#f3f4f6;            } .ri-sl svg { fill:#6b7280; }
+.ri-pk { background:var(--pink-tint);   } .ri-pk svg { fill:var(--pink); }
+.ri-pu { background:var(--purple-tint); } .ri-pu svg { fill:var(--purple); }
+.ri-te { background:var(--teal-tint);   } .ri-te svg { fill:var(--teal); }
+.ri-rgb { background:linear-gradient(135deg,var(--purple),var(--pink)); box-shadow:0 4px 14px rgba(139,47,255,0.4); } .ri-rgb svg { fill:#fff; }
 
 .r-body { flex:1; min-width:0; }
-.r-name {
-  font-family:'Outfit', sans-serif;
-  font-size:13.5px; font-weight:700; color:var(--txt);
-  display:flex; align-items:center; gap:7px; flex-wrap:wrap;
-  margin-bottom:3px; line-height:1.3;
-}
-.r-sub { font-size:10px; color:var(--txt3); margin-bottom:8px; }
-.r-desc {
-  font-size:10.5px; color:rgba(255,255,255,0.45); line-height:1.6;
-  background:rgba(255,255,255,0.03);
-  border-radius:8px; padding:7px 10px;
-  border-left:2px solid transparent;
-}
-.r-desc.d-orange { border-color:rgba(242,100,25,.4); }
-.r-desc.d-blue   { border-color:rgba(59,110,248,.4); }
-.r-desc.d-green  { border-color:rgba(24,201,100,.4); }
-.r-desc.d-slate  { border-color:rgba(255,255,255,.1); }
-.r-desc.d-purple { border-color:rgba(155,89,247,.4); }
-.r-desc.d-pink   { border-color:rgba(232,62,140,.4); }
-.r-desc.d-teal   { border-color:rgba(6,182,212,.4);  }
+.r-name { font-family:'Outfit',sans-serif; font-size:14px; font-weight:800; color:var(--ink); display:flex; align-items:center; gap:7px; flex-wrap:wrap; margin-bottom:3px; }
+.r-sub  { font-size:10.5px; color:var(--muted); margin-bottom:8px; }
+.r-desc { font-size:11px; color:var(--txt); line-height:1.6; border-radius:9px; padding:7px 11px; border-left:3px solid transparent; }
+.d-or { background:var(--orange-tint); border-color:#ff8c5a; }
+.d-bl { background:var(--blue-tint);   border-color:#6090ff; }
+.d-gr { background:var(--green-tint);  border-color:#34d399; }
+.d-sl { background:#f9fafb;            border-color:#d1d5db; }
+.d-pk { background:var(--pink-tint);   border-color:#ff60ad; }
+.d-pu { background:var(--purple-tint); border-color:#a855f7; }
+.d-te { background:var(--teal-tint);   border-color:#22d3ee; }
 
-/* chips */
-.chip {
-  font-family:'Outfit', sans-serif;
-  font-size:9px; font-weight:800; border-radius:5px;
-  padding:2px 8px; letter-spacing:0.3px; text-transform:uppercase; white-space:nowrap;
-}
-.ch-hot    { background:rgba(255,107,26,0.20); color:var(--orange); border:1px solid rgba(255,107,26,0.35); }
-.ch-best   { background:rgba(77,143,255,0.18); color:var(--blue);   border:1px solid rgba(77,143,255,0.35); }
-.ch-addon  { background:rgba(255,255,255,0.06);color:var(--txt2);   border:1px solid var(--border); }
-.ch-new    { background:rgba(0,230,118,0.14); color:var(--green);  border:1px solid rgba(0,230,118,0.38); }
-.ch-rgb    { background:linear-gradient(90deg,var(--purple),var(--pink)); color:#fff; border:none; box-shadow:0 2px 10px rgba(155,89,247,.4); }
-.ch-act    { background:rgba(77,143,255,0.16); color:var(--blue);   border:1px solid rgba(77,143,255,0.35); }
+.chip { font-family:'Outfit',sans-serif; font-size:9px; font-weight:800; border-radius:5px; padding:2px 8px; letter-spacing:0.3px; text-transform:uppercase; white-space:nowrap; }
+.ch-hot  { background:#fff1e6; color:var(--orange); border:1.5px solid #ffd0b5; }
+.ch-best { background:#eff4ff; color:var(--blue);   border:1.5px solid #bfd1ff; }
+.ch-add  { background:#f3f4f6; color:#6b7280;       border:1.5px solid #e5e7eb; }
+.ch-new  { background:#ecfdf5; color:var(--green);  border:1.5px solid #a7f3ce; }
+.ch-rgb  { background:linear-gradient(90deg,var(--purple),var(--pink)); color:#fff; border:none; box-shadow:0 2px 10px rgba(139,47,255,0.45); }
+.ch-act  { background:#eff4ff; color:var(--blue);   border:1.5px solid #bfd1ff; }
 
-/* price block */
-.r-price {
-  display:flex; flex-direction:column; align-items:flex-end;
-  flex-shrink:0; padding-top:1px;
-}
-.p-was {
-  font-family:'Outfit', sans-serif;
-  font-size:10px; color:var(--txt3); text-decoration:line-through;
-  text-decoration-color:var(--red); line-height:1; margin-bottom:2px;
-}
-.p-now {
-  font-family:'Outfit', sans-serif;
-  font-size:23px; font-weight:800; line-height:1;
-}
-.p-now.c-orange { color:var(--orange); }
-.p-now.c-blue   { color:var(--blue); }
-.p-now.c-purple { color:var(--purple); }
-.p-now.c-pink   { color:var(--pink); }
-.p-now.c-sm     { font-size:18px; color:var(--txt2); }
-.p-save {
-  font-family:'Outfit', sans-serif;
-  font-size:8px; font-weight:700; margin-top:4px;
-  color:var(--green); background:rgba(0,230,118,0.13);
-  border:1px solid rgba(0,230,118,0.30);
-  border-radius:4px; padding:2px 6px;
-}
-.p-save.s-purple { color:var(--purple); background:rgba(155,89,247,0.1); border-color:rgba(191,95,255,0.30); }
+.r-price { display:flex; flex-direction:column; align-items:flex-end; flex-shrink:0; padding-top:2px; }
+.p-was { font-family:'Outfit',sans-serif; font-size:11px; font-weight:500; color:#9ca3af; text-decoration:line-through; text-decoration-color:var(--red); line-height:1; margin-bottom:2px; }
+.p-now { font-family:'Outfit',sans-serif; font-size:24px; font-weight:900; line-height:1; }
+.c-or { color:var(--orange); } .c-bl { color:var(--blue); }
+.c-pu { color:var(--purple); } .c-pk { color:var(--pink); }
+.c-te { color:var(--teal);   } .c-sm { font-size:19px; color:var(--muted); }
+.p-save { font-family:'Outfit',sans-serif; font-size:9px; font-weight:800; margin-top:4px; border-radius:4px; padding:2px 7px; }
+.s-gr { color:var(--green);  background:#ecfdf5; border:1px solid #a7f3ce; }
+.s-pu { color:var(--purple); background:var(--purple-tint); border:1px solid #d8b4fe; }
 
-/* ── OS block ── */
-.os-block {
-  background:var(--card);
-  border:1px solid rgba(191,95,255,0.25);
-  border-radius:14px; overflow:hidden;
-  margin-bottom:8px; position:relative;
-}
-.os-block::before {
-  content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
-  background:var(--purple);
-}
-.os-header {
-  background:rgba(155,89,247,0.08);
-  border-bottom:1px solid rgba(191,95,255,0.18);
-  padding:11px 16px 11px 20px;
-  display:flex; align-items:center; gap:9px;
-}
-.os-header svg { width:15px; height:15px; fill:var(--purple); }
-.os-header span {
-  font-family:'Outfit', sans-serif;
-  font-size:12px; font-weight:700; color:var(--purple);
-}
-.os-row {
-  padding:14px 16px 14px 20px;
-  border-bottom:1px solid rgba(255,255,255,0.05);
-}
+/* OS block */
+.os-block { background:var(--white); border:1.5px solid #d8b4fe; border-radius:16px; overflow:hidden; margin-bottom:9px; position:relative; }
+.os-block::before { content:''; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--purple); }
+.os-head { background:var(--purple-tint); border-bottom:1.5px solid #e9d5ff; padding:11px 16px 11px 20px; display:flex; align-items:center; gap:9px; }
+.os-head svg { width:16px; height:16px; fill:var(--purple); }
+.os-head span { font-family:'Outfit',sans-serif; font-size:13px; font-weight:800; color:var(--purple); }
+.os-row { padding:14px 16px 14px 20px; border-bottom:1px solid #f3f4f6; }
 .os-row:last-child { border-bottom:none; }
 .os-top { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:8px; }
-.os-type {
-  font-family:'Outfit', sans-serif;
-  font-size:13px; font-weight:700; color:var(--txt);
-  display:flex; align-items:center; gap:7px; flex-wrap:wrap;
-}
-.os-desc {
-  font-size:10.5px; color:rgba(255,255,255,0.4); line-height:1.6;
-  background:rgba(191,95,255,0.07); border-radius:8px; padding:7px 10px;
-  border-left:2px solid rgba(191,95,255,0.35);
-}
-.os-act-note {
-  margin-top:8px; font-size:9.5px; font-weight:600; color:var(--blue);
-  background:rgba(77,143,255,0.12); border-radius:6px; padding:5px 10px;
-  display:inline-flex; align-items:center; gap:5px;
-  border:1px solid rgba(77,143,255,0.25);
-}
-.os-act-note svg { width:11px; height:11px; fill:var(--blue); }
+.os-type { font-family:'Outfit',sans-serif; font-size:13.5px; font-weight:800; color:var(--ink); display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
+.os-desc { font-size:11px; color:var(--txt); line-height:1.6; background:var(--purple-tint); border-radius:8px; padding:8px 11px; border-left:3px solid #c084fc; }
+.os-note { margin-top:8px; font-size:10px; font-weight:700; color:var(--blue); background:var(--blue-tint); border-radius:6px; padding:5px 10px; display:inline-flex; align-items:center; gap:5px; border:1px solid #bfd1ff; }
+.os-note svg { width:11px; height:11px; fill:var(--blue); }
 
-/* ── student deal ── */
-.student {
-  background: var(--card2);
-  border: 1px solid rgba(0,230,118,0.22);
-  border-radius:18px; padding:22px 22px;
-  margin-bottom:24px; position:relative; overflow:hidden;
-}
-.stu-glow {
-  position:absolute; width:250px; height:250px; border-radius:50%;
-  background:rgba(0,230,118,0.14); filter:blur(80px);
-  top:-80px; right:-60px; pointer-events:none;
-}
-.stu-glow2 {
-  position:absolute; width:150px; height:150px; border-radius:50%;
-  background:rgba(77,143,255,0.14); filter:blur(60px);
-  bottom:-40px; left:-20px; pointer-events:none;
-}
-.student-inner { position:relative; z-index:1; }
-.stu-eyebrow {
-  font-family:'Outfit', sans-serif;
-  font-size:8.5px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase;
-  color:var(--green); margin-bottom:14px; display:flex; align-items:center; gap:6px;
-}
-.stu-eyebrow::before {
-  content:''; width:18px; height:2px;
-  background:linear-gradient(90deg,var(--green),transparent);
-}
-.stu-main { display:flex; align-items:center; justify-content:space-between; gap:18px; }
-.stu-left { flex:1; }
-.stu-heading {
-  font-family:'Outfit', sans-serif;
-  font-size:26px; font-weight:800; color:var(--white); line-height:1.1; margin-bottom:8px;
-}
-.stu-heading span { color:var(--green); }
-.stu-body { font-size:12px; color:var(--txt2); line-height:1.65; margin-bottom:12px; }
-.stu-terms {
-  font-size:10px; color:var(--txt3); font-weight:600;
-  display:flex; align-items:center; gap:6px;
-}
-.stu-terms svg { width:12px; height:12px; fill:var(--green); }
-.stu-badge {
-  background: linear-gradient(160deg,#0d6b30,var(--green-dk),#1aaa54);
-  border-radius:16px; padding:20px 22px; text-align:center;
-  flex-shrink:0; min-width:110px;
-  box-shadow:0 8px 32px rgba(0,230,118,0.45);
-  border:1px solid rgba(0,230,118,0.38);
-  position:relative; overflow:hidden;
-}
-.stu-badge::before {
-  content:''; position:absolute; top:0; left:0; right:0; height:50%;
-  background:rgba(255,255,255,0.06); border-radius:16px 16px 0 0;
-}
-.stu-badge-num {
-  font-family:'Outfit', sans-serif;
-  font-size:36px; font-weight:800; color:#fff; line-height:1; position:relative;
-}
-.stu-badge-lbl {
-  font-family:'Outfit', sans-serif;
-  font-size:8px; color:rgba(255,255,255,0.6); letter-spacing:0.3px; text-transform:uppercase;
-  margin-top:5px; position:relative;
-}
-
-/* ── visit fees ── */
-.visit-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:24px; }
-.v-card {
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:14px; padding:18px 16px; text-align:center;
-  position:relative; overflow:hidden;
-  transition:transform .18s, box-shadow .18s, border-color .2s;
-}
-.v-card:hover { transform:translateY(-2px); box-shadow:0 10px 30px rgba(0,0,0,0.5); }
-.v-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
-.v-card.vc-near::before { background:var(--blue); }
-.v-card.vc-far::before  { background:var(--purple); }
-.v-card.vc-near { border-color:rgba(77,143,255,0.25); }
-.v-card.vc-far  { border-color:rgba(191,95,255,0.25); background:var(--card2); }
-.v-card:hover.vc-near { border-color:rgba(59,110,248,0.4); }
-.v-card:hover.vc-far  { border-color:rgba(191,95,255,0.45); }
-.v-icon {
-  width:38px; height:38px; border-radius:10px;
-  display:flex; align-items:center; justify-content:center; margin:0 auto 10px;
-}
-.v-icon svg { width:18px; height:18px; }
-.vc-near .v-icon { background:rgba(77,143,255,0.16); } .vc-near .v-icon svg { fill:var(--blue); }
-.vc-far  .v-icon { background:rgba(191,95,255,0.16); } .vc-far  .v-icon svg { fill:var(--purple); }
-.v-range {
-  font-family:'Outfit', sans-serif;
-  font-size:8.5px; font-weight:700; letter-spacing:0.3px; text-transform:uppercase;
-  color:var(--txt3); margin-bottom:6px;
-}
-.v-price {
-  font-family:'Outfit', sans-serif;
-  font-size:32px; font-weight:800; color:var(--white); line-height:1;
-}
-.vc-near .v-price { color:var(--blue); }
-.vc-far  .v-price { color:var(--purple); }
-.v-lbl { font-size:9.5px; color:var(--txt3); margin-top:3px; }
-.v-note { font-size:9px; font-weight:700; color:var(--green); margin-top:8px; }
-
-/* ── availability ── */
-.avail-wrap {
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:14px; overflow:hidden; margin-bottom:24px;
-}
-.avail-row {
-  display:flex; justify-content:space-between; align-items:center;
-  padding:12px 18px;
-  border-bottom:1px solid rgba(255,255,255,0.05);
-}
-.avail-row:last-child { border-bottom:none; }
-.avail-row:nth-child(even) { background:rgba(255,255,255,0.015); }
-.avail-day {
-  display:flex; align-items:center; gap:10px;
-  font-size:12.5px; font-weight:600; color:var(--txt);
-}
-.dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
-.d-half { background:#f59e0b; box-shadow:0 0 8px rgba(245,158,11,0.6); }
-.d-full { background:var(--green); box-shadow:0 0 8px rgba(0,230,118,0.7); }
-.avail-time {
-  font-family:'Outfit', sans-serif;
-  font-size:11px; font-weight:700; border-radius:6px; padding:4px 11px;
-}
-.t-half { color:#d97706; background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.2); }
-.t-full { color:var(--green); background:rgba(0,230,118,0.10); border:1px solid rgba(0,230,118,0.22); }
-
-/* ── trust bar ── */
-.trust {
-  display:grid; grid-template-columns:repeat(4,1fr);
-  background:var(--card); border:1px solid var(--border);
-  border-radius:14px; overflow:hidden; margin-bottom:24px;
-}
-.trust-item {
-  padding:16px 10px; text-align:center;
-  border-right:1px solid rgba(255,255,255,0.05);
-}
+/* trust */
+.trust { display:grid; grid-template-columns:repeat(4,1fr); background:var(--white); border:1.5px solid var(--border); border-radius:16px; overflow:hidden; margin-bottom:22px; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+.trust-item { padding:16px 10px; text-align:center; border-right:1.5px solid var(--border); }
 .trust-item:last-child { border-right:none; }
-.t-ico {
-  width:34px; height:34px; border-radius:9px;
-  display:flex; align-items:center; justify-content:center; margin:0 auto 8px;
-}
-.t-ico svg { width:16px; height:16px; }
-.ti1 { background:rgba(77,143,255,0.16); } .ti1 svg { fill:var(--blue); }
-.ti2 { background:rgba(255,202,40,0.16); } .ti2 svg { fill:var(--gold); }
-.ti3 { background:rgba(24,201,100,0.10); } .ti3 svg { fill:var(--green); }
-.ti4 { background:rgba(191,95,255,0.16); } .ti4 svg { fill:var(--purple); }
-.t-val {
-  font-family:'Outfit', sans-serif;
-  font-size:15px; font-weight:800; color:var(--white); line-height:1;
-}
-.t-lbl {
-  font-family:'Outfit', sans-serif;
-  font-size:7.5px; color:var(--txt3); letter-spacing:0.2px; text-transform:uppercase; margin-top:3px;
-}
+.t-ico { width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; margin:0 auto 8px; }
+.t-ico svg { width:18px; height:18px; }
+.ti1 { background:var(--blue-tint); }   .ti1 svg { fill:var(--blue); }
+.ti2 { background:var(--gold-tint); }   .ti2 svg { fill:var(--gold); }
+.ti3 { background:var(--green-tint); }  .ti3 svg { fill:var(--green); }
+.ti4 { background:var(--purple-tint); } .ti4 svg { fill:var(--purple); }
+.t-val { font-family:'Outfit',sans-serif; font-size:15px; font-weight:900; color:var(--ink); line-height:1; }
+.t-lbl { font-size:9px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.3px; margin-top:3px; }
 
-/* ── footer CTA ── */
-.footer {
-  background:var(--card2);
-  border:1px solid rgba(77,143,255,0.25);
-  border-radius:18px; padding:24px 24px;
-  margin-bottom:14px; position:relative; overflow:hidden;
-}
-.footer::before {
-  content:'';
-  position:absolute; inset:0;
-  background:
-    radial-gradient(ellipse 300px 200px at 90% -20%, rgba(77,143,255,0.25) 0%,transparent 70%),
-    radial-gradient(ellipse 200px 150px at -10% 110%, rgba(24,201,100,0.15) 0%,transparent 60%);
-  pointer-events:none;
-}
-.footer::after {
-  content:'';
-  position:absolute; inset:0;
-  background-image:radial-gradient(circle,rgba(255,255,255,0.03) 1px,transparent 1px);
-  background-size:18px 18px; pointer-events:none;
-}
-.footer-inner { position:relative; z-index:1; }
-.cta-eyebrow {
-  font-family:'Outfit', sans-serif;
-  font-size:8.5px; letter-spacing:0.5px; text-transform:uppercase;
-  color:var(--txt3); margin-bottom:8px;
-}
-.cta-number {
-  font-family:'Outfit', sans-serif;
-  font-size:34px; font-weight:800; color:var(--white);
-  letter-spacing:0.2px; line-height:1; margin-bottom:16px;
-}
-.cta-number span { color:var(--orange); }
-.cta-divider { height:1px; background:rgba(255,255,255,0.07); margin-bottom:16px; }
-.cta-body { font-size:12px; color:var(--txt2); line-height:1.65; margin-bottom:18px; }
-.cta-body strong { color:var(--txt); font-weight:700; }
-.wa-btn {
-  display:flex; align-items:center; justify-content:center; gap:13px;
-  background: linear-gradient(135deg,#0d6b30,#18c964);
-  border-radius:13px; padding:16px 24px;
-  text-decoration:none;
-  box-shadow:0 6px 28px rgba(0,230,118,0.55);
-  transition:transform .15s,box-shadow .15s;
-  border:1px solid rgba(0,230,118,0.38);
-}
-.wa-btn:hover { transform:translateY(-2px); box-shadow:0 12px 40px rgba(0,230,118,0.7); }
+/* student */
+.student { background:linear-gradient(135deg,#052e16 0%,#065f46 50%,#064e3b 100%); border-radius:18px; padding:22px 22px; margin-bottom:24px; position:relative; overflow:hidden; border:1.5px solid rgba(52,211,153,0.3); box-shadow:0 8px 32px rgba(0,185,107,0.2); }
+.stu-g1 { position:absolute; width:260px; height:260px; border-radius:50%; background:rgba(0,230,118,0.18); filter:blur(80px); top:-80px; right:-60px; pointer-events:none; }
+.stu-g2 { position:absolute; width:160px; height:160px; border-radius:50%; background:rgba(0,184,217,0.15); filter:blur(60px); bottom:-40px; left:20px; pointer-events:none; }
+.stu-dots { position:absolute; inset:0; pointer-events:none; background-image:radial-gradient(circle,rgba(255,255,255,0.05) 1px,transparent 1px); background-size:16px 16px; }
+.stu-inner { position:relative; z-index:1; }
+.stu-eyebrow { font-family:'Outfit',sans-serif; font-size:9px; font-weight:800; letter-spacing:0.8px; text-transform:uppercase; color:rgba(52,211,153,0.8); margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+.stu-eyebrow::before { content:''; width:20px; height:2px; background:linear-gradient(90deg,#34d399,transparent); }
+.stu-main { display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.stu-heading { font-family:'Outfit',sans-serif; font-size:27px; font-weight:900; color:#fff; line-height:1.1; margin-bottom:10px; }
+.stu-heading span { color:#34d399; }
+.stu-body { font-size:12px; color:rgba(255,255,255,0.6); line-height:1.65; margin-bottom:12px; }
+.stu-cond { font-size:10.5px; font-weight:600; color:rgba(52,211,153,0.8); display:flex; align-items:center; gap:6px; }
+.stu-cond svg { width:13px; height:13px; fill:#34d399; }
+.stu-badge { background:linear-gradient(160deg,#059669,#10b981,#34d399); border-radius:16px; padding:20px 22px; text-align:center; flex-shrink:0; min-width:110px; box-shadow:0 8px 28px rgba(16,185,129,0.5); border:1.5px solid rgba(52,211,153,0.4); position:relative; overflow:hidden; }
+.stu-badge::before { content:''; position:absolute; top:0; left:0; right:0; height:45%; background:rgba(255,255,255,0.1); border-radius:16px 16px 0 0; }
+.stu-n { font-family:'Outfit',sans-serif; font-size:36px; font-weight:900; color:#fff; line-height:1; position:relative; }
+.stu-l { font-size:9px; font-weight:700; color:rgba(255,255,255,0.7); text-transform:uppercase; letter-spacing:0.3px; margin-top:4px; position:relative; }
+
+/* visit */
+.visit-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:24px; }
+.v-card { background:var(--white); border:1.5px solid var(--border); border-radius:16px; padding:20px 16px; text-align:center; position:relative; overflow:hidden; transition:transform .18s,box-shadow .18s,border-color .2s; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+.v-card:hover { transform:translateY(-2px); }
+.v-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; }
+.v-near::before { background:linear-gradient(90deg,var(--blue),var(--teal)); }
+.v-far::before  { background:linear-gradient(90deg,var(--purple),var(--pink)); }
+.v-near { border-color:#bfd1ff; } .v-near:hover { border-color:#6090ff; box-shadow:0 12px 36px rgba(37,99,255,0.14); }
+.v-far  { border-color:#d8b4fe; background:var(--purple-tint); } .v-far:hover { border-color:#a855f7; box-shadow:0 12px 36px rgba(139,47,255,0.14); }
+.v-ico { width:40px; height:40px; border-radius:11px; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; }
+.v-ico svg { width:20px; height:20px; }
+.v-near .v-ico { background:var(--blue-tint); } .v-near .v-ico svg { fill:var(--blue); }
+.v-far  .v-ico { background:var(--purple-tint); } .v-far .v-ico svg { fill:var(--purple); }
+.v-range { font-family:'Outfit',sans-serif; font-size:9px; font-weight:700; letter-spacing:0.3px; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+.v-price { font-family:'Outfit',sans-serif; font-size:34px; font-weight:900; line-height:1; }
+.v-near .v-price { color:var(--blue); } .v-far .v-price { color:var(--purple); }
+.v-lbl  { font-size:10px; color:var(--muted); margin-top:3px; }
+.v-note { font-size:9.5px; font-weight:700; color:var(--green); margin-top:8px; }
+
+/* availability */
+.avail { background:var(--white); border:1.5px solid var(--border); border-radius:16px; overflow:hidden; margin-bottom:24px; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+.av-row { display:flex; justify-content:space-between; align-items:center; padding:13px 20px; border-bottom:1px solid #f3f4f6; }
+.av-row:last-child { border-bottom:none; }
+.av-row:nth-child(even) { background:#fafbff; }
+.av-day { display:flex; align-items:center; gap:10px; font-size:12.5px; font-weight:700; color:var(--ink); }
+.dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
+.d-half { background:#f59e00; box-shadow:0 0 7px rgba(245,158,0,0.7); }
+.d-full { background:var(--green); box-shadow:0 0 7px rgba(0,185,107,0.7); }
+.av-time { font-family:'Outfit',sans-serif; font-size:12px; font-weight:800; border-radius:7px; padding:4px 13px; }
+.t-half { color:#b45309; background:#fffbeb; border:1.5px solid #fde68a; }
+.t-full { color:var(--green); background:var(--green-tint); border:1.5px solid #a7f3ce; }
+
+/* footer */
+.footer { background:linear-gradient(135deg,#1a0a5e 0%,#2563ff 50%,#4f46e5 100%); border-radius:20px; padding:26px 26px; margin-bottom:14px; position:relative; overflow:hidden; box-shadow:0 10px 40px rgba(37,99,255,0.35); border:1.5px solid rgba(99,138,255,0.3); }
+.f-g1 { position:absolute; width:280px; height:280px; border-radius:50%; background:rgba(139,47,255,0.4); filter:blur(90px); top:-100px; right:-60px; pointer-events:none; }
+.f-g2 { position:absolute; width:180px; height:180px; border-radius:50%; background:rgba(255,84,0,0.25); filter:blur(70px); bottom:-50px; left:-20px; pointer-events:none; }
+.f-dots { position:absolute; inset:0; pointer-events:none; background-image:radial-gradient(circle,rgba(255,255,255,0.07) 1px,transparent 1px); background-size:18px 18px; }
+.f-inner { position:relative; z-index:1; }
+.f-eyebrow { font-family:'Outfit',sans-serif; font-size:9px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-bottom:8px; }
+.f-number { font-family:'Outfit',sans-serif; font-size:36px; font-weight:900; color:#fff; letter-spacing:0.5px; line-height:1; margin-bottom:16px; }
+.f-number span { color:#ffb347; }
+.f-divider { height:1px; background:rgba(255,255,255,0.12); margin-bottom:16px; }
+.f-body { font-size:12.5px; color:rgba(255,255,255,0.6); line-height:1.65; margin-bottom:18px; }
+.f-body strong { color:#fff; font-weight:700; }
+.wa-btn { display:flex; align-items:center; justify-content:center; gap:13px; background:linear-gradient(135deg,#059669,#10b981); border-radius:14px; padding:17px 24px; text-decoration:none; box-shadow:0 6px 28px rgba(16,185,129,0.55); border:1.5px solid rgba(52,211,153,0.35); transition:transform .15s,box-shadow .15s; }
+.wa-btn:hover { transform:translateY(-2px); box-shadow:0 12px 40px rgba(16,185,129,0.7); }
 .wa-btn svg { width:26px; height:26px; flex-shrink:0; }
-.wa-btn-label {
-  font-family:'Outfit', sans-serif;
-  font-size:16px; font-weight:800; color:#fff;
-}
-.wa-btn-sub { font-size:10px; color:rgba(255,255,255,0.6); font-weight:400; }
+.wa-label { font-family:'Outfit',sans-serif; font-size:17px; font-weight:900; color:#fff; }
+.wa-sub { font-size:10px; color:rgba(255,255,255,0.65); margin-top:1px; }
 
-.bottom-note {
-  display:flex; align-items:center; justify-content:center; gap:8px;
-  font-family:'Outfit', sans-serif;
-  font-size:9.5px; color:var(--txt3); letter-spacing:.5px;
-}
-.pulse {
-  width:7px; height:7px; border-radius:50%; background:var(--green);
-  animation:pulse 2s infinite;
-}
-@keyframes pulse {
-  0%,100% { box-shadow:0 0 0 2px rgba(0,230,118,0.30); }
-  50%      { box-shadow:0 0 0 8px rgba(24,201,100,0.04); }
-}
-
-/* animation stagger for rows */
-.row:nth-child(1) { animation-delay:.05s; }
-.row:nth-child(2) { animation-delay:.10s; }
-.row:nth-child(3) { animation-delay:.15s; }
-.row:nth-child(4) { animation-delay:.20s; }
-.row:nth-child(5) { animation-delay:.25s; }
-.row { animation: fadeRow .4s ease both; }
-@keyframes fadeRow {
-  from { opacity:0; transform:translateX(-8px); }
-  to   { opacity:1; transform:none; }
-}
+.bottom { display:flex; align-items:center; justify-content:center; gap:8px; font-size:11px; font-weight:600; color:var(--muted); }
+.pulse { width:8px; height:8px; border-radius:50%; background:var(--green); animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{box-shadow:0 0 0 2px rgba(0,185,107,0.3)} 50%{box-shadow:0 0 0 8px rgba(0,185,107,0.05)} }
 </style>
 </head>
 <body>
 <div class="poster">
 
-  <!-- ══════ HERO ══════ -->
   <div class="hero">
-    <div class="hero-content">
-
+    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+    <div class="hero-dots"></div>
+    <div class="hero-inner">
       <div class="top-bar">
         <div class="brand">
-          <div class="brand-mark">
-            <svg viewBox="0 0 24 24"><path d="M21 2H3a2 2 0 00-2 2v12a2 2 0 002 2h7v2H8v2h8v-2h-2v-2h7a2 2 0 002-2V4a2 2 0 00-2-2zm0 14H3V4h18v12z"/></svg>
-          </div>
-          <div class="brand-text">
-            <div class="brand-name">My<b>PC</b></div>
-            <span class="brand-sub">Home Tech Service · BLR</span>
+          <div class="brand-icon"><svg viewBox="0 0 24 24"><path d="M21 2H3a2 2 0 00-2 2v12a2 2 0 002 2h7v2H8v2h8v-2h-2v-2h7a2 2 0 002-2V4a2 2 0 00-2-2zm0 14H3V4h18v12z"/></svg></div>
+          <div>
+            <div class="brand-name">My<span>PC</span></div>
+            <div class="brand-sub">Home Tech Service</div>
           </div>
         </div>
-        <div class="city-pill">
+        <div class="city-tag">
           <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
           <span>Bangalore</span>
         </div>
       </div>
 
-      <div class="headline">
-        PC Setup,
-        <em class="hl-accent">At Your Doorstep</em>
-        <span class="hl-line2">No shop. No hassle.</span>
-      </div>
+      <div class="hl">PC Setup,<em class="hl-accent">At Your Doorstep</em><span class="hl-thin">No shop. No hassle.</span></div>
+      <p class="sub">Professional laptop &amp; desktop setup, repair, and optimization — we come to you anywhere in Bangalore. Same-day visits available.</p>
 
-      <p class="subline">Professional laptop &amp; desktop setup, repair, and optimization — we come to you anywhere in Bangalore. Same-day visits available.</p>
-
-      <div class="dev-tags">
-        <div class="dev-tag">
-          <svg viewBox="0 0 24 24"><path d="M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg>
-          Laptop Setup
-        </div>
-        <div class="dev-tag">
-          <svg viewBox="0 0 24 24"><path d="M21 2H3a2 2 0 00-2 2v12a2 2 0 002 2h7v2H8v2h8v-2h-2v-2h7a2 2 0 002-2V4a2 2 0 00-2-2zm0 14H3V4h18v12z"/></svg>
-          Desktop Setup
-        </div>
-        <div class="dev-tag">
-          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
-          Data-Safe
-        </div>
-        <div class="dev-tag">
-          <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg>
-          5-Star Rated
-        </div>
+      <div class="dev-row">
+        <div class="dev-pill"><svg viewBox="0 0 24 24"><path d="M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg>Laptop</div>
+        <div class="dev-pill"><svg viewBox="0 0 24 24"><path d="M21 2H3a2 2 0 00-2 2v12a2 2 0 002 2h7v2H8v2h8v-2h-2v-2h7a2 2 0 002-2V4a2 2 0 00-2-2zm0 14H3V4h18v12z"/></svg>Desktop</div>
+        <div class="dev-pill"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>Data-Safe</div>
+        <div class="dev-pill"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg>5-Star Rated</div>
       </div>
 
       <div class="stats">
-        <div class="stat">
-          <div class="stat-val">100%</div>
-          <div class="stat-lbl">Doorstep</div>
-        </div>
-        <div class="stat">
-          <div class="stat-val">Same Day</div>
-          <div class="stat-lbl">Visit</div>
-        </div>
-        <div class="stat">
-          <div class="stat-val">Verified</div>
-          <div class="stat-lbl">Technician</div>
-        </div>
-        <div class="stat">
-          <div class="stat-val">₹0</div>
-          <div class="stat-lbl">Hidden Fees</div>
-        </div>
+        <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Doorstep</div></div>
+        <div class="stat"><div class="stat-n">Same Day</div><div class="stat-l">Visit</div></div>
+        <div class="stat"><div class="stat-n">Verified</div><div class="stat-l">Technician</div></div>
+        <div class="stat"><div class="stat-n">₹0</div><div class="stat-l">Hidden Fees</div></div>
       </div>
     </div>
   </div>
   <div class="rainbow"></div>
 
-  <!-- ══════ BODY ══════ -->
   <div class="body">
-
-    <!-- Trust row -->
-    <div class="trust" style="margin-bottom:22px;">
-      <div class="trust-item">
-        <div class="t-ico ti1"><svg viewBox="0 0 24 24"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3a4.237 4.237 0 00-6 0zm-4-4l2 2a7.074 7.074 0 0110 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg></div>
-        <div class="t-val">WiFi</div><div class="t-lbl">Setup</div>
-      </div>
-      <div class="trust-item">
-        <div class="t-ico ti2"><svg viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg></div>
-        <div class="t-val">Fast</div><div class="t-lbl">Service</div>
-      </div>
-      <div class="trust-item">
-        <div class="t-ico ti3"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
-        <div class="t-val">Tested</div><div class="t-lbl">Before Leave</div>
-      </div>
-      <div class="trust-item">
-        <div class="t-ico ti4"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg></div>
-        <div class="t-val">Safe</div><div class="t-lbl">Certified</div>
-      </div>
+    <!-- Trust -->
+    <div class="trust">
+      <div class="trust-item"><div class="t-ico ti1"><svg viewBox="0 0 24 24"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3a4.237 4.237 0 00-6 0zm-4-4l2 2a7.074 7.074 0 0110 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg></div><div class="t-val">WiFi</div><div class="t-lbl">Setup</div></div>
+      <div class="trust-item"><div class="t-ico ti2"><svg viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg></div><div class="t-val">Fast</div><div class="t-lbl">Service</div></div>
+      <div class="trust-item"><div class="t-ico ti3"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div><div class="t-val">Tested</div><div class="t-lbl">Before Leave</div></div>
+      <div class="trust-item"><div class="t-ico ti4"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg></div><div class="t-val">Safe</div><div class="t-lbl">Certified</div></div>
     </div>
 
-    <!-- ══ SETUP SERVICES ══ -->
-    <div class="cat-banner cb-setup" style="margin-bottom:14px;">
-      <div class="cb-glow1"></div>
+    <!-- Setup Banner -->
+    <div class="cat-banner cb-blue">
+      <div class="cb-shine"></div><div class="cb-dots"></div>
       <div class="cb-inner">
-        <div class="cb-icon">
-          <svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
-        </div>
+        <div class="cb-icon"><svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg></div>
         <div>
           <div class="cb-title">Setup Services — Laptop &amp; Desktop</div>
-          <div class="cb-sub">Everything from unboxing to fully ready. We wire, install, configure and hand it over running perfectly.</div>
-          <div class="cb-pills">
-            <span class="cb-pill">Cable Mgmt</span><span class="cb-pill">WiFi Config</span>
-            <span class="cb-pill">Drivers</span><span class="cb-pill">Office/Apps</span><span class="cb-pill">Account Sync</span>
-          </div>
+          <div class="cb-sub">Everything from unboxing to fully ready. We wire, install, configure and hand it over perfectly.</div>
+          <div class="cb-pills"><span class="cb-pill">Cable Mgmt</span><span class="cb-pill">WiFi Config</span><span class="cb-pill">Drivers</span><span class="cb-pill">Office/Apps</span><span class="cb-pill">Account Sync</span></div>
         </div>
       </div>
     </div>
 
-    <div class="sec-label">
-      <span class="sec-tag">01</span>
-      <span class="sec-name">Setup Services</span>
-      <span class="sec-rule"></span>
+    <div class="sec-head"><span class="sec-num">01</span><span class="sec-name">Setup Services</span><span class="sec-line"></span></div>
+
+    <div class="rows">
+      <div class="row r-or">
+        <div class="r-left"><div class="r-icon ri-or"><svg viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg></div>
+        <div class="r-body"><div class="r-name">Basic Setup <span class="chip ch-hot">Popular</span></div><div class="r-sub">Cable wiring · Table layout · WiFi · Essential drivers</div><div class="r-desc d-or">New machine? We unbox, wire neatly, connect WiFi, install core drivers. Done in under an hour — ready to use.</div></div></div>
+        <div class="r-price"><div class="p-was">₹499</div><div class="p-now c-or">₹349</div><div class="p-save s-gr">SAVE ₹150</div></div>
+      </div>
+
+      <div class="row r-bl">
+        <div class="r-left"><div class="r-icon ri-bl"><svg viewBox="0 0 24 24"><path d="M19.07 4.93l-1.41 1.41A8 8 0 0120 12a8 8 0 01-8 8 8 8 0 01-8-8 8 8 0 015.48-7.59L8.07 5.8A10 10 0 002 12a10 10 0 0010 10 10 10 0 0010-10 10 10 0 00-2.93-7.07zM13 2h-2v10h2z"/></svg></div>
+        <div class="r-body"><div class="r-name">Full Setup <span class="chip ch-best">Best Value</span></div><div class="r-sub">Basic + OS config · Office/Chrome · Accounts · All drivers</div><div class="r-desc d-bl">Everything in Basic, plus full OS config, Microsoft Office, Chrome, antivirus, account sync, all peripheral drivers. Sit down and start working immediately.</div></div></div>
+        <div class="r-price"><div class="p-was">₹1,199</div><div class="p-now c-bl">₹899</div><div class="p-save s-gr">SAVE ₹300</div></div>
+      </div>
+
+      <div class="row r-gr">
+        <div class="r-left"><div class="r-icon ri-gr"><svg viewBox="0 0 24 24"><path d="M2 6v2h14V6H2zm0 5v2h11v-2H2zm14.5 0L14 13.5 16 16l-4 4 1.5 1.5 4-4 2.5 2.5L22 17l-5.5-6zm-9.5 4v2h6v-2H7z"/></svg></div>
+        <div class="r-body"><div class="r-name">Data Transfer <span class="chip ch-add">Add-on</span></div><div class="r-sub">Old PC / Laptop → New PC / Laptop</div><div class="r-desc d-gr">Safely migrate all photos, docs, music and files. Zero data loss. Works with Windows and external drives.</div></div></div>
+        <div class="r-price"><div class="p-was">₹299</div><div class="p-now c-sm">+₹199</div><div class="p-save s-gr">SAVE ₹100</div></div>
+      </div>
+
+      <div class="row r-sl">
+        <div class="r-left"><div class="r-icon ri-sl"><svg viewBox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg></div>
+        <div class="r-body"><div class="r-name">Printer / Peripheral <span class="chip ch-add">Add-on</span></div><div class="r-sub">Install · Configure · Test print/scan</div><div class="r-desc d-sl">Printer driver install, scanner setup, USB hubs or any external device. We test everything before we leave.</div></div></div>
+        <div class="r-price"><div class="p-was">₹249</div><div class="p-now c-sm">+₹149</div><div class="p-save s-gr">SAVE ₹100</div></div>
+      </div>
+
+      <div class="row r-pk">
+        <div class="r-left"><div class="r-icon ri-rgb"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 00-7 7c0 2.62 1.44 4.89 3.57 6.12L9 17h6l.43-1.88A7 7 0 0019 9a7 7 0 00-7-7zm1 15h-2v1h2v-1zm-1 3a1 1 0 01-1-1h2a1 1 0 01-1 1z"/></svg></div>
+        <div class="r-body"><div class="r-name">RGB Installation <span class="chip ch-rgb">Lights Included</span></div><div class="r-sub">Full RGB lighting + controller — we supply everything</div><div class="r-desc d-pk">We bring the LED strips, controller and do the full install — wiring, placement, sync. No parts to buy, just book.</div></div></div>
+        <div class="r-price"><div class="p-was">₹1,599</div><div class="p-now c-pk">₹1,299</div><div class="p-save s-pu">SAVE ₹300</div></div>
+      </div>
     </div>
 
-    <div class="rows" style="margin-bottom:22px;">
-
-      <!-- Basic Setup -->
-      <div class="row r-orange">
-        <div class="r-left">
-          <div class="r-icon ri-orange">
-            <svg viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
-          </div>
-          <div class="r-body">
-            <div class="r-name">Basic Setup <span class="chip ch-hot">Popular</span></div>
-            <div class="r-sub">Cable wiring · Table layout · WiFi · Essential drivers</div>
-            <div class="r-desc d-orange">New machine? We unbox, wire everything neatly, connect WiFi, install core drivers and confirm it all boots correctly. Walk away done in 45 minutes.</div>
-          </div>
-        </div>
-        <div class="r-price">
-          <div class="p-was">₹499</div>
-          <div class="p-now c-orange">₹349</div>
-          <div class="p-save">SAVE ₹150</div>
-        </div>
-      </div>
-
-      <!-- Full Setup -->
-      <div class="row r-blue">
-        <div class="r-left">
-          <div class="r-icon ri-blue">
-            <svg viewBox="0 0 24 24"><path d="M19.07 4.93l-1.41 1.41A8 8 0 0120 12a8 8 0 01-8 8 8 8 0 01-8-8 8 8 0 015.48-7.59L8.07 5.8A10 10 0 002 12a10 10 0 0010 10 10 10 0 0010-10 10 10 0 00-2.93-7.07zM13 2h-2v10h2z"/></svg>
-          </div>
-          <div class="r-body">
-            <div class="r-name">Full Setup <span class="chip ch-best">Best Value</span></div>
-            <div class="r-sub">Basic + OS config · Office/Chrome · Accounts · All drivers</div>
-            <div class="r-desc d-blue">Everything in Basic, plus full OS configuration, Microsoft Office, Google Chrome, antivirus install, Google/Apple account sync, and all peripheral drivers. Sit down and start working immediately.</div>
-          </div>
-        </div>
-        <div class="r-price">
-          <div class="p-was">₹1,199</div>
-          <div class="p-now c-blue">₹899</div>
-          <div class="p-save">SAVE ₹300</div>
-        </div>
-      </div>
-
-      <!-- Data Transfer -->
-      <div class="row r-green">
-        <div class="r-left">
-          <div class="r-icon ri-green">
-            <svg viewBox="0 0 24 24"><path d="M2 6v2h14V6H2zm0 5v2h11v-2H2zm14.5 0L14 13.5 16 16l-4 4 1.5 1.5 4-4 2.5 2.5L22 17l-5.5-6zm-9.5 4v2h6v-2H7z"/></svg>
-          </div>
-          <div class="r-body">
-            <div class="r-name">Data Transfer <span class="chip ch-addon">Add-on</span></div>
-            <div class="r-sub">Old PC / Laptop → New PC / Laptop</div>
-            <div class="r-desc d-green">Safely migrate all your photos, documents, music and files. Zero data loss. Works with both Windows and external drives.</div>
-          </div>
-        </div>
-        <div class="r-price">
-          <div class="p-was">₹299</div>
-          <div class="p-now c-sm">+₹199</div>
-          <div class="p-save">SAVE ₹100</div>
-        </div>
-      </div>
-
-      <!-- Printer -->
-      <div class="row r-slate">
-        <div class="r-left">
-          <div class="r-icon ri-slate">
-            <svg viewBox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
-          </div>
-          <div class="r-body">
-            <div class="r-name">Printer / Peripheral <span class="chip ch-addon">Add-on</span></div>
-            <div class="r-sub">Install · Configure · Test print/scan</div>
-            <div class="r-desc d-slate">Printer driver install, scanner setup, USB hubs or any external device. We test everything before we leave.</div>
-          </div>
-        </div>
-        <div class="r-price">
-          <div class="p-was">₹249</div>
-          <div class="p-now c-sm">+₹149</div>
-          <div class="p-save">SAVE ₹100</div>
-        </div>
-      </div>
-
-      <!-- RGB -->
-      <div class="row r-pink">
-        <div class="r-left">
-          <div class="r-icon ri-rgb">
-            <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 00-7 7c0 2.62 1.44 4.89 3.57 6.12L9 17h6l.43-1.88A7 7 0 0019 9a7 7 0 00-7-7zm1 15h-2v1h2v-1zm-1 3a1 1 0 01-1-1h2a1 1 0 01-1 1z"/></svg>
-          </div>
-          <div class="r-body">
-            <div class="r-name">RGB Installation <span class="chip ch-rgb">Lights Included</span></div>
-            <div class="r-sub">Full RGB lighting + controller — we supply everything</div>
-            <div class="r-desc d-pink">We bring the LED strips, controller and do the complete install — wiring, placement, sync. No parts to buy. Just book and we handle the glow-up.</div>
-          </div>
-        </div>
-        <div class="r-price">
-          <div class="p-was">₹1,599</div>
-          <div class="p-now c-pink">₹1,299</div>
-          <div class="p-save s-purple">SAVE ₹300</div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- ══ REPAIR BANNER ══ -->
-    <div class="cat-banner cb-repair" style="margin-bottom:14px;">
-      <div class="cb-glow1"></div>
+    <!-- Repair Banner -->
+    <div class="cat-banner cb-purple">
+      <div class="cb-shine"></div><div class="cb-dots"></div>
       <div class="cb-inner">
-        <div class="cb-icon">
-          <svg viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
-        </div>
+        <div class="cb-icon"><svg viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg></div>
         <div>
           <div class="cb-title">Repair, Reinstall &amp; Optimize</div>
-          <div class="cb-sub">Slow PC, crashing, outdated OS? We diagnose and fix at your doorstep — no shop visit needed.</div>
-          <div class="cb-pills">
-            <span class="cb-pill">OS Reinstall</span><span class="cb-pill">Win Activation</span>
-            <span class="cb-pill">Speed Fix</span><span class="cb-pill">Junk Cleanup</span>
-          </div>
+          <div class="cb-sub">Slow PC, crashing, outdated OS? Diagnosed and fixed at your doorstep.</div>
+          <div class="cb-pills"><span class="cb-pill">OS Reinstall</span><span class="cb-pill">Win Activation</span><span class="cb-pill">Speed Fix</span><span class="cb-pill">Junk Cleanup</span></div>
         </div>
       </div>
     </div>
 
-    <div class="sec-label">
-      <span class="sec-tag">02</span>
-      <span class="sec-name">Repair &amp; Support</span>
-      <span class="sec-rule"></span>
-    </div>
+    <div class="sec-head"><span class="sec-num">02</span><span class="sec-name">Repair &amp; Support</span><span class="sec-line"></span></div>
 
-    <div class="rows" style="margin-bottom:22px;">
-
-      <!-- OS Block -->
+    <div class="rows">
       <div class="os-block">
-        <div class="os-header">
-          <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM8 20H4v-4h4v4zm0-6H4v-4h4v4zm0-6H4V4h4v4zm6 12h-4v-4h4v4zm0-6h-4v-4h4v4zm0-6h-4V4h4v4zm6 12h-4v-4h4v4zm0-6h-4v-4h4v4zm0-6h-4V4h4v4z"/></svg>
-          <span>OS Reinstall</span>
+        <div class="os-head"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM8 20H4v-4h4v4zm0-6H4v-4h4v4zm0-6H4V4h4v4zm6 12h-4v-4h4v4zm0-6h-4v-4h4v4zm0-6h-4V4h4v4zm6 12h-4v-4h4v4zm0-6h-4v-4h4v4zm0-6h-4V4h4v4z"/></svg><span>OS Reinstall</span></div>
+        <div class="os-row">
+          <div class="os-top"><div class="os-type">Unofficial / Cracked Version</div><div class="r-price"><div class="p-was">₹699</div><div class="p-now c-pu">₹499</div><div class="p-save s-gr">SAVE ₹200</div></div></div>
+          <div class="os-desc">Fresh Windows reinstall using an unofficial build. Ideal for older machines needing a clean, functional OS without the license cost.</div>
         </div>
         <div class="os-row">
-          <div class="os-top">
-            <div class="os-type">Unofficial / Cracked Version</div>
-            <div class="r-price">
-              <div class="p-was">₹699</div>
-              <div class="p-now c-purple">₹499</div>
-              <div class="p-save">SAVE ₹200</div>
-            </div>
-          </div>
-          <div class="os-desc">Fresh Windows reinstall using an unofficial build. Ideal for older machines that just need a clean, functional OS fast — without the license cost.</div>
-        </div>
-        <div class="os-row">
-          <div class="os-top">
-            <div class="os-type">Original / Licensed <span class="chip ch-act">+ Activation</span></div>
-            <div class="r-price">
-              <div class="p-was">₹2,199</div>
-              <div class="p-now c-purple">₹1,999</div>
-              <div class="p-save">SAVE ₹200</div>
-            </div>
-          </div>
-          <div class="os-desc">Genuine Windows with an official Microsoft license key — fully legal, permanent, and eligible for all future updates. Activation is included and verified before we leave.</div>
-          <div class="os-act-note">
-            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
-            Existing OS Activation only — same price, no reinstall needed
-          </div>
+          <div class="os-top"><div class="os-type">Original / Licensed <span class="chip ch-act">+ Activation</span></div><div class="r-price"><div class="p-was">₹2,199</div><div class="p-now c-pu">₹1,999</div><div class="p-save s-gr">SAVE ₹200</div></div></div>
+          <div class="os-desc">Genuine Windows with official Microsoft license key — fully legal, permanent, eligible for all future updates. Activation verified before we leave.</div>
+          <div class="os-note"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>Existing OS Activation only — same price, no reinstall needed</div>
         </div>
       </div>
 
-      <!-- Slow PC Fix -->
-      <div class="row r-purple">
-        <div class="r-left">
-          <div class="r-icon ri-purple">
-            <svg viewBox="0 0 24 24"><path d="M15.9 5c-.17 0-.32.09-.41.23l-.07.15-5.18 11.65c-.16.29-.26.61-.26.96 0 1.11.9 2.01 2.01 2.01.96 0 1.77-.68 1.96-1.59l.01-.03L16.4 5.5c0-.28-.22-.5-.5-.5zM1 9l2 2c2.88-2.88 6.79-4.08 10.53-3.62l1.19-2.68C9.89 3.84 4.74 5.22 1 9zm20 2l2-2c-1.64-1.64-3.55-2.82-5.59-3.57l-.53 2.82c1.5.62 2.9 1.53 4.12 2.75zm-4 4l2-2c-.8-.8-1.7-1.42-2.66-1.89l-.55 2.87c.42.27.83.59 1.21.99V15zM5 13l2 2c1.13-1.13 2.56-1.79 4.03-2l1.28-2.88c-2.63.18-5.19 1.27-7.31 2.88z"/></svg>
-          </div>
-          <div class="r-body">
-            <div class="r-name">Slow PC Fix / Optimization</div>
-            <div class="r-sub">Performance tuning · Startup fix · RAM &amp; storage cleanup</div>
-            <div class="r-desc d-purple">We find what's killing your speed — bloatware, startup overload, background processes — and fix it on the spot. Most PCs feel brand new after this session.</div>
-          </div>
-        </div>
-        <div class="r-price">
-          <div class="p-was">₹449</div>
-          <div class="p-now c-purple">₹349</div>
-          <div class="p-save">SAVE ₹100</div>
-        </div>
+      <div class="row r-pu">
+        <div class="r-left"><div class="r-icon ri-pu"><svg viewBox="0 0 24 24"><path d="M15.9 5c-.17 0-.32.09-.41.23l-.07.15-5.18 11.65c-.16.29-.26.61-.26.96 0 1.11.9 2.01 2.01 2.01.96 0 1.77-.68 1.96-1.59l.01-.03L16.4 5.5c0-.28-.22-.5-.5-.5zM1 9l2 2c2.88-2.88 6.79-4.08 10.53-3.62l1.19-2.68C9.89 3.84 4.74 5.22 1 9zm20 2l2-2c-1.64-1.64-3.55-2.82-5.59-3.57l-.53 2.82c1.5.62 2.9 1.53 4.12 2.75z"/></svg></div>
+        <div class="r-body"><div class="r-name">Slow PC Fix / Optimization</div><div class="r-sub">Performance tuning · Startup fix · RAM &amp; storage cleanup</div><div class="r-desc d-pu">We find what's killing your speed — bloatware, startup overload, background processes — fixed on the spot. Most PCs feel brand new after this.</div></div></div>
+        <div class="r-price"><div class="p-was">₹449</div><div class="p-now c-pu">₹349</div><div class="p-save s-gr">SAVE ₹100</div></div>
       </div>
 
-      <!-- PC Cleanup -->
-      <div class="row r-teal">
-        <div class="r-left">
-          <div class="r-icon ri-teal">
-            <svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-          </div>
-          <div class="r-body">
-            <div class="r-name">Deep PC Cleanup <span class="chip ch-new">New</span></div>
-            <div class="r-sub">Junk removal · Temp files · Browser clutter · Speed boost</div>
-            <div class="r-desc d-teal">Full system scrub — junk files, temp cache, duplicate files, unnecessary startup apps and browser clutter all gone. Safe, thorough, and your PC will thank you.</div>
-          </div>
-        </div>
-        <div class="r-price">
-          <div class="p-was">₹349</div>
-          <div class="p-now c-sm" style="color:var(--teal)">₹249</div>
-          <div class="p-save">SAVE ₹100</div>
-        </div>
+      <div class="row r-te">
+        <div class="r-left"><div class="r-icon ri-te"><svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg></div>
+        <div class="r-body"><div class="r-name">Deep PC Cleanup <span class="chip ch-new">New</span></div><div class="r-sub">Junk removal · Temp files · Browser clutter · Speed boost</div><div class="r-desc d-te">Full system scrub — junk files, temp cache, duplicate files, unnecessary startup apps and browser clutter removed. Noticeable difference.</div></div></div>
+        <div class="r-price"><div class="p-was">₹349</div><div class="p-now c-te">₹249</div><div class="p-save s-gr">SAVE ₹100</div></div>
       </div>
-
     </div>
 
-    <!-- ══ STUDENT DEAL ══ -->
+    <!-- Student -->
     <div class="student">
-      <div class="stu-glow"></div>
-      <div class="stu-glow2"></div>
-      <div class="student-inner">
+      <div class="stu-g1"></div><div class="stu-g2"></div><div class="stu-dots"></div>
+      <div class="stu-inner">
         <div class="stu-eyebrow">Student Special Offer</div>
         <div class="stu-main">
-          <div class="stu-left">
-            <div class="stu-heading">₹200 <span>Flat Off</span><br>for Students</div>
-            <p class="stu-body">Just show your college or school ID when we arrive and get ₹200 off your total bill. No codes, no forms — instant discount on the spot.</p>
-            <div class="stu-terms">
-              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
-              Any Bangalore college/school student · Min bill ₹500
-            </div>
-          </div>
-          <div class="stu-badge">
-            <div class="stu-badge-num">₹200</div>
-            <div class="stu-badge-lbl">Flat Off</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ══ VISIT CHARGES ══ -->
-    <div class="sec-label">
-      <span class="sec-tag">03</span>
-      <span class="sec-name">Visit Charges</span>
-      <span class="sec-rule"></span>
-    </div>
-
-    <div class="visit-grid">
-      <div class="v-card vc-near">
-        <div class="v-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-        </div>
-        <div class="v-range">Within 10 km</div>
-        <div class="v-price">₹99</div>
-        <div class="v-lbl">visit fee</div>
-        <div class="v-note">✓ Quick &amp; affordable</div>
-      </div>
-      <div class="v-card vc-far">
-        <div class="v-icon">
-          <svg viewBox="0 0 24 24"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg>
-        </div>
-        <div class="v-range">Beyond 10 km</div>
-        <div class="v-price">₹149</div>
-        <div class="v-lbl">visit fee</div>
-        <div class="v-note">✓ Any area in Bangalore</div>
-      </div>
-    </div>
-
-    <!-- ══ AVAILABILITY ══ -->
-    <div class="sec-label">
-      <span class="sec-tag">04</span>
-      <span class="sec-name">Availability</span>
-      <span class="sec-rule"></span>
-    </div>
-
-    <div class="avail-wrap" style="margin-bottom:24px;">
-      <div class="avail-row">
-        <div class="avail-day"><div class="dot d-half"></div>Weekdays (Mon – Fri)</div>
-        <div class="avail-time t-half">3:00 PM – 9:00 PM</div>
-      </div>
-      <div class="avail-row">
-        <div class="avail-day"><div class="dot d-half"></div>1st &amp; 3rd Saturday</div>
-        <div class="avail-time t-half">3:00 PM – 9:00 PM</div>
-      </div>
-      <div class="avail-row">
-        <div class="avail-day"><div class="dot d-full"></div>2nd &amp; 4th Saturday</div>
-        <div class="avail-time t-full">9:00 AM – 9:00 PM</div>
-      </div>
-      <div class="avail-row">
-        <div class="avail-day"><div class="dot d-full"></div>All Sundays</div>
-        <div class="avail-time t-full">9:00 AM – 9:00 PM</div>
-      </div>
-    </div>
-
-    <!-- ══ FOOTER CTA ══ -->
-    <div class="footer">
-      <div class="footer-inner">
-        <div class="cta-eyebrow">Book a Visit · WhatsApp Us</div>
-        <div class="cta-number">+91 <span>82969 28645</span></div>
-        <div class="cta-divider"></div>
-        <p class="cta-body"><strong>Message us directly on WhatsApp</strong> — tell us what you need and we'll confirm a slot. Same-day visits available on weekends.</p>
-        <a href="https://wa.me/918296928645?text=Hi%20MyPC!%20I%27d%20like%20to%20book%20a%20PC%20setup%20service." target="_blank" rel="noopener noreferrer" class="wa-btn">
-          <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-            <path fill="#fff" d="M16 2C8.27 2 2 8.27 2 16c0 2.44.66 4.73 1.8 6.72L2 30l7.47-1.77A13.93 13.93 0 0016 30c7.73 0 14-6.27 14-14S23.73 2 16 2zm0 25.5a11.44 11.44 0 01-5.84-1.6l-.42-.25-4.34 1.03 1.05-4.22-.27-.44A11.45 11.45 0 014.5 16C4.5 9.6 9.6 4.5 16 4.5S27.5 9.6 27.5 16 22.4 27.5 16 27.5zm6.27-8.57c-.34-.17-2.02-.99-2.33-1.1-.31-.12-.54-.17-.77.17-.23.34-.88 1.1-1.08 1.33-.2.23-.4.26-.74.09-.34-.17-1.44-.53-2.74-1.69-1.01-.9-1.7-2.01-1.89-2.35-.2-.34-.02-.52.15-.69.15-.15.34-.4.51-.59.17-.2.23-.34.34-.57.11-.23.06-.43-.03-.6-.09-.17-.77-1.85-1.05-2.53-.28-.67-.56-.58-.77-.59l-.65-.01c-.23 0-.59.09-.9.43-.31.34-1.17 1.14-1.17 2.79s1.2 3.23 1.36 3.46c.17.23 2.36 3.6 5.72 5.05.8.34 1.42.55 1.9.7.8.25 1.53.22 2.1.13.64-.1 1.97-.8 2.25-1.58.28-.77.28-1.43.2-1.57-.09-.14-.31-.23-.65-.4z"/>
-          </svg>
           <div>
-            <div class="wa-btn-label">WhatsApp Us Now</div>
-            <div class="wa-btn-sub">Fast reply · No calls needed</div>
+            <div class="stu-heading">₹200 <span>Flat Off</span><br>for Students</div>
+            <p class="stu-body">Show your college or school ID when we arrive and get ₹200 off your total bill. No codes, no apps needed — instant discount.</p>
+            <div class="stu-cond"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>Any Bangalore student · Min bill ₹500</div>
           </div>
+          <div class="stu-badge"><div class="stu-n">₹200</div><div class="stu-l">Flat Off</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visit -->
+    <div class="sec-head"><span class="sec-num">03</span><span class="sec-name">Visit Charges</span><span class="sec-line"></span></div>
+    <div class="visit-grid">
+      <div class="v-card v-near">
+        <div class="v-ico"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+        <div class="v-range">Within 10 km</div><div class="v-price">₹99</div><div class="v-lbl">visit fee</div><div class="v-note">✓ Quick &amp; affordable</div>
+      </div>
+      <div class="v-card v-far">
+        <div class="v-ico"><svg viewBox="0 0 24 24"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></div>
+        <div class="v-range">Beyond 10 km</div><div class="v-price">₹149</div><div class="v-lbl">visit fee</div><div class="v-note">✓ Any area in Bangalore</div>
+      </div>
+    </div>
+
+    <!-- Avail -->
+    <div class="sec-head"><span class="sec-num">04</span><span class="sec-name">Availability</span><span class="sec-line"></span></div>
+    <div class="avail">
+      <div class="av-row"><div class="av-day"><div class="dot d-half"></div>Weekdays (Mon – Fri)</div><div class="av-time t-half">3:00 PM – 9:00 PM</div></div>
+      <div class="av-row"><div class="av-day"><div class="dot d-half"></div>1st &amp; 3rd Saturday</div><div class="av-time t-half">3:00 PM – 9:00 PM</div></div>
+      <div class="av-row"><div class="av-day"><div class="dot d-full"></div>2nd &amp; 4th Saturday</div><div class="av-time t-full">9:00 AM – 9:00 PM</div></div>
+      <div class="av-row"><div class="av-day"><div class="dot d-full"></div>All Sundays</div><div class="av-time t-full">9:00 AM – 9:00 PM</div></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="f-g1"></div><div class="f-g2"></div><div class="f-dots"></div>
+      <div class="f-inner">
+        <div class="f-eyebrow">Book a Visit · WhatsApp Us</div>
+        <div class="f-number">+91 <span>82969 28645</span></div>
+        <div class="f-divider"></div>
+        <p class="f-body"><strong>Message us directly on WhatsApp</strong> — tell us what you need and we'll confirm your slot. Same-day visits available on weekends.</p>
+        <a href="https://wa.me/918296928645?text=Hi%20MyPC!%20I%27d%20like%20to%20book%20a%20PC%20setup%20service." target="_blank" rel="noopener noreferrer" class="wa-btn">
+          <svg viewBox="0 0 32 32"><path fill="#fff" d="M16 2C8.27 2 2 8.27 2 16c0 2.44.66 4.73 1.8 6.72L2 30l7.47-1.77A13.93 13.93 0 0016 30c7.73 0 14-6.27 14-14S23.73 2 16 2zm0 25.5a11.44 11.44 0 01-5.84-1.6l-.42-.25-4.34 1.03 1.05-4.22-.27-.44A11.45 11.45 0 014.5 16C4.5 9.6 9.6 4.5 16 4.5S27.5 9.6 27.5 16 22.4 27.5 16 27.5zm6.27-8.57c-.34-.17-2.02-.99-2.33-1.1-.31-.12-.54-.17-.77.17-.23.34-.88 1.1-1.08 1.33-.2.23-.4.26-.74.09-.34-.17-1.44-.53-2.74-1.69-1.01-.9-1.7-2.01-1.89-2.35-.2-.34-.02-.52.15-.69.15-.15.34-.4.51-.59.17-.2.23-.34.34-.57.11-.23.06-.43-.03-.6-.09-.17-.77-1.85-1.05-2.53-.28-.67-.56-.58-.77-.59l-.65-.01c-.23 0-.59.09-.9.43-.31.34-1.17 1.14-1.17 2.79s1.2 3.23 1.36 3.46c.17.23 2.36 3.6 5.72 5.05.8.34 1.42.55 1.9.7.8.25 1.53.22 2.1.13.64-.1 1.97-.8 2.25-1.58.28-.77.28-1.43.2-1.57-.09-.14-.31-.23-.65-.4z"/></svg>
+          <div><div class="wa-label">WhatsApp Us Now</div><div class="wa-sub">Fast reply · No calls needed</div></div>
         </a>
       </div>
     </div>
 
-    <div class="bottom-note">
-      <div class="pulse"></div>
-      MyPC · Trusted Home Tech Service · Bangalore
-    </div>
-
+    <div class="bottom"><div class="pulse"></div>MyPC · Trusted Home Tech Service · Bangalore</div>
   </div>
 </div>
 </body>
